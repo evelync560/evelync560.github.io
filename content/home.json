@@ -1,34 +1,8 @@
 {
-  "page_title": "Evelyn Chen · Quantitative Research",
-  "meta_description": "Evelyn Chen's quantitative research portfolio, featuring Bitcoin multi-factor regime modeling and systematic strategy research.",
-  "eyebrow": "Quantitative Research · Systematic Trading",
-  "first_name": "Evelyn",
-  "last_name": "Chen",
-  "role": "Researching signals, market regimes, and risk-aware strategies.",
-  "intro": "I build reproducible data pipelines, test heterogeneous market signals, and examine whether promising backtests survive drawdowns, parameter changes, and real implementation constraints.",
-  "focus_label": "CURRENT FOCUS",
-  "focus_title": "Bitcoin regime modeling",
-  "focus_description": "Combining valuation, on-chain positioning, miner economics, sentiment, and trend signals into a risk-aware allocation framework.",
-  "focus_metrics": [
-    {
-      "value": "10+",
-      "label": "signals researched"
-    },
-    {
-      "value": "−18.6%",
-      "label": "strategy max drawdown"
-    }
-  ],
-  "research_section_title": "Selected Research",
-  "project_image": "/assets/final-comparison.png",
-  "project_image_alt": "Bitcoin multi-factor strategy compared with buy-and-hold",
-  "project_tags": [
-    "Bitcoin",
-    "Multi-factor",
-    "Regime modeling"
-  ],
-  "project_title": "Bitcoin Multi-Factor Regime Modeling",
   "project_summary": "A daily allocation framework that combines market-state classification with technical confirmation to reduce drawdowns across Bitcoin cycles.",
+  "meta_description": "Evelyn Chen's quantitative research portfolio, featuring Bitcoin multi-factor regime modeling and systematic strategy research.",
+  "page_title": "Evelyn Chen · Quantitative Research",
+  "eyebrow": "Quantitative Research · Systematic Trading",
   "project_bullets": [
     {
       "lead": "Researched 10+ heterogeneous Bitcoin alpha signals",
@@ -48,6 +22,11 @@
     }
   ],
   "toolbox_title": "Toolbox",
+  "intro": "I build reproducible data pipelines, test heterogeneous market signals, and examine whether promising backtests survive drawdowns, parameter changes, and real implementation constraints.",
+  "focus_label": "CURRENT FOCUS",
+  "focus_title": "Bitcoin regime modeling",
+  "footer_text": "© 2026 Evelyn Chen · Quantitative research portfolio",
+  "project_title": "Bitcoin Multi-Factor Regime Modeling",
   "toolbox_items": [
     {
       "title": "RESEARCH",
@@ -62,5 +41,26 @@
       "description": "Drawdown analysis · turnover · transaction costs · benchmark comparison"
     }
   ],
-  "footer_text": "© 2026 Evelyn Chen · Quantitative research portfolio"
+  "last_name": "Chen",
+  "project_image": "/assets/btc_three_factor_low_mid_high_ema_2021_simple_en.png",
+  "focus_description": "Combining valuation, on-chain positioning, miner economics, sentiment, and trend signals into a risk-aware allocation framework.",
+  "role": "Researching signals, market regimes, and risk-aware strategies.",
+  "research_section_title": "Selected Research",
+  "first_name": "Evelyn",
+  "focus_metrics": [
+    {
+      "value": "10+",
+      "label": "signals researched"
+    },
+    {
+      "value": "−18.6%",
+      "label": "strategy max drawdown"
+    }
+  ],
+  "project_tags": [
+    "Bitcoin",
+    "Multi-factor",
+    "Regime modeling"
+  ],
+  "project_image_alt": "Bitcoin multi-factor strategy compared with buy-and-hold"
 }
