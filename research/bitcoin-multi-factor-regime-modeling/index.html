@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23f7931a'/%3E%3Cpath d='M19 17h28v7H28v5h16v7H28v5h19v7H19z' fill='white'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="/assets/styles.css" />
 </head>
-<body>
+<body data-content-source="/content/bitcoin.json">
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="/" aria-label="Evelyn Chen home">
@@ -38,18 +38,18 @@
 
     <article>
       <a class="back-link" href="/#research">Back to research</a>
-      <p class="eyebrow">Bitcoin · Multi-Factor Research · 2026</p>
-      <h1 class="article-title">Bitcoin Multi-Factor Regime Modeling</h1>
-      <p class="article-subtitle">A multi-signal framework for identifying Bitcoin market regimes and dynamically adjusting exposure.</p>
+      <p class="eyebrow" data-content-text="eyebrow">Bitcoin · Multi-Factor Research · 2026</p>
+      <h1 class="article-title" data-content-text="title">Bitcoin Multi-Factor Regime Modeling</h1>
+      <p class="article-subtitle" data-content-text="subtitle">A multi-signal framework for identifying Bitcoin market regimes and dynamically adjusting exposure.</p>
 
       <div class="thesis" id="summary">
-        <h2>Research summary</h2>
-        <div class="metric-grid" aria-label="Headline results">
+        <h2 data-content-text="summary_title">Research summary</h2>
+        <div class="metric-grid" aria-label="Headline results" data-content-list="summary_metrics">
           <div class="metric"><span class="metric-value">10+</span><span class="metric-label">Alpha signals researched</span></div>
           <div class="metric positive"><span class="metric-value">2.82×</span><span class="metric-label">Strategy ending value</span></div>
           <div class="metric risk"><span class="metric-value">−18.6%</span><span class="metric-label">Maximum drawdown</span></div>
         </div>
-        <ul class="resume-points">
+        <ul class="resume-points" data-content-list="summary_bullets">
           <li>Researched 10+ heterogeneous Bitcoin alpha signals spanning valuation, on-chain positioning, miner economics, investor sentiment, and technical momentum, including MVRV, Holder Profitability, Fear &amp; Greed, Puell Multiple, Hash Ribbons, and trend/momentum indicators.</li>
           <li>Developed a multi-signal regime-classification framework to identify low-, intermediate-, and high-valuation market states and dynamically adjust exposure rather than relying on static buy-and-hold positioning.</li>
           <li>Backtested the regime-based allocation strategy across multiple market cycles, growing initial capital to 2.82× with 18.6% maximum drawdown, versus 2.68× and 58.4% maximum drawdown for Bitcoin buy-and-hold.</li>
@@ -57,7 +57,7 @@
         </ul>
       </div>
 
-      <section class="article-section" id="signals">
+      <section class="article-section" id="signals" data-content-figure="0">
         <span class="section-kicker">01 / SIGNAL FILTERS</span>
         <h2>Testing trend and confirmation signals</h2>
         <figure class="figure">
@@ -68,7 +68,7 @@
         </figure>
       </section>
 
-      <section class="article-section" id="regimes">
+      <section class="article-section" id="regimes" data-content-figure="1">
         <span class="section-kicker">02 / REGIME MODEL</span>
         <h2>Classifying low-, intermediate-, and high-valuation markets</h2>
         <figure class="figure">
@@ -79,7 +79,7 @@
         </figure>
       </section>
 
-      <section class="article-section" id="results">
+      <section class="article-section" id="results" data-content-figure="2">
         <span class="section-kicker">03 / RESULTS</span>
         <h2>Comparable upside with substantially lower drawdown</h2>
         <figure class="figure">
@@ -91,7 +91,7 @@
       </section>
 
       <footer class="article-footer">
-        <p>Source: Week 5 four-week research summary, Bitcoin section. For research and educational purposes only. This is not investment advice.</p>
+        <p data-content-text="footer_text">Source: Week 5 four-week research summary, Bitcoin section. For research and educational purposes only. This is not investment advice.</p>
       </footer>
     </article>
   </main>

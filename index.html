@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23f7931a'/%3E%3Cpath d='M19 17h28v7H28v5h16v7H28v5h19v7H19z' fill='white'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="/assets/styles.css" />
 </head>
-<body>
+<body data-content-source="/content/home.json">
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="/" aria-label="Evelyn Chen home">
@@ -28,20 +28,20 @@
   <main class="home-main">
     <section class="hero" aria-labelledby="home-title">
       <div>
-        <p class="eyebrow">Quantitative Research · Systematic Trading</p>
-        <h1 id="home-title">Evelyn<br />Chen</h1>
-        <p class="hero-role">Researching signals, market regimes, and risk-aware strategies.</p>
-        <p class="hero-copy">I build reproducible data pipelines, test heterogeneous market signals, and examine whether promising backtests survive drawdowns, parameter changes, and real implementation constraints.</p>
+        <p class="eyebrow" data-content-text="eyebrow">Quantitative Research · Systematic Trading</p>
+        <h1 id="home-title"><span data-content-text="first_name">Evelyn</span><br /><span data-content-text="last_name">Chen</span></h1>
+        <p class="hero-role" data-content-text="role">Researching signals, market regimes, and risk-aware strategies.</p>
+        <p class="hero-copy" data-content-text="intro">I build reproducible data pipelines, test heterogeneous market signals, and examine whether promising backtests survive drawdowns, parameter changes, and real implementation constraints.</p>
         <div class="actions">
           <a class="button primary" href="#research">View research</a>
           <a class="button" href="https://github.com/evelync560" rel="noreferrer">GitHub profile</a>
         </div>
       </div>
       <aside class="focus-card" aria-label="Current research focus">
-        <span class="focus-label">CURRENT FOCUS</span>
-        <h2>Bitcoin regime modeling</h2>
-        <p>Combining valuation, on-chain positioning, miner economics, sentiment, and trend signals into a risk-aware allocation framework.</p>
-        <div class="focus-metrics">
+        <span class="focus-label" data-content-text="focus_label">CURRENT FOCUS</span>
+        <h2 data-content-text="focus_title">Bitcoin regime modeling</h2>
+        <p data-content-text="focus_description">Combining valuation, on-chain positioning, miner economics, sentiment, and trend signals into a risk-aware allocation framework.</p>
+        <div class="focus-metrics" data-content-list="focus_metrics">
           <div><strong>10+</strong><span>signals researched</span></div>
           <div><strong>−18.6%</strong><span>strategy max drawdown</span></div>
         </div>
@@ -49,20 +49,20 @@
     </section>
 
     <section class="research-section" id="research" aria-labelledby="research-title">
-      <h2 class="section-title" id="research-title">Selected Research</h2>
+      <h2 class="section-title" id="research-title" data-content-text="research_section_title">Selected Research</h2>
       <article class="project-card">
         <div class="project-visual">
-          <img src="/assets/final-comparison.png" alt="Bitcoin multi-factor strategy compared with buy-and-hold" />
+          <img src="/assets/final-comparison.png" alt="Bitcoin multi-factor strategy compared with buy-and-hold" data-content-image="project_image" data-content-alt="project_image_alt" />
         </div>
         <div class="project-content">
-          <div class="tags" aria-label="Research topics">
+          <div class="tags" aria-label="Research topics" data-content-list="project_tags">
             <span class="tag">Bitcoin</span>
             <span class="tag">Multi-factor</span>
             <span class="tag">Regime modeling</span>
           </div>
-          <h3>Bitcoin Multi-Factor Regime Modeling</h3>
-          <p class="project-summary">A daily allocation framework that combines market-state classification with technical confirmation to reduce drawdowns across Bitcoin cycles.</p>
-          <ul class="resume-points">
+          <h3 data-content-text="project_title">Bitcoin Multi-Factor Regime Modeling</h3>
+          <p class="project-summary" data-content-text="project_summary">A daily allocation framework that combines market-state classification with technical confirmation to reduce drawdowns across Bitcoin cycles.</p>
+          <ul class="resume-points" data-content-list="project_bullets">
             <li><strong>Researched 10+ heterogeneous Bitcoin alpha signals</strong> spanning valuation, on-chain positioning, miner economics, investor sentiment, and technical momentum, including MVRV, Holder Profitability, Fear &amp; Greed, Puell Multiple, Hash Ribbons, and trend indicators.</li>
             <li><strong>Developed a multi-signal regime-classification framework</strong> to identify low-, intermediate-, and high-valuation market states and dynamically adjust exposure rather than relying on static buy-and-hold positioning.</li>
             <li><strong>Backtested the regime-based allocation strategy</strong> across multiple market cycles, growing initial capital to 2.82× with 18.6% maximum drawdown, versus 2.68× and 58.4% maximum drawdown for Bitcoin buy-and-hold.</li>
@@ -74,8 +74,8 @@
     </section>
 
     <section class="toolbox" id="toolbox" aria-labelledby="toolbox-title">
-      <h2 class="section-title" id="toolbox-title">Toolbox</h2>
-      <div class="tool-grid">
+      <h2 class="section-title" id="toolbox-title" data-content-text="toolbox_title">Toolbox</h2>
+      <div class="tool-grid" data-content-list="toolbox_items">
         <div class="tool-group"><h3>RESEARCH</h3><p>Factor analysis · regime classification · backtesting · robustness checks</p></div>
         <div class="tool-group"><h3>DATA</h3><p>Python · pandas · Coin Metrics · on-chain and market data alignment</p></div>
         <div class="tool-group"><h3>RISK</h3><p>Drawdown analysis · turnover · transaction costs · benchmark comparison</p></div>
@@ -84,7 +84,7 @@
   </main>
 
   <footer class="site-footer">
-    <span>© 2026 Evelyn Chen · Quantitative research portfolio</span>
+    <span data-content-text="footer_text">© 2026 Evelyn Chen · Quantitative research portfolio</span>
     <a href="https://github.com/evelync560" rel="noreferrer">github.com/evelync560</a>
   </footer>
   <script src="/assets/site.js"></script>

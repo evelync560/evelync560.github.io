@@ -1,0 +1,55 @@
+{
+  "page_title": "Bitcoin Multi-Factor Regime Modeling · Evelyn Chen",
+  "meta_description": "A concise visual summary of Evelyn Chen's Bitcoin multi-factor regime modeling research.",
+  "eyebrow": "Bitcoin · Multi-Factor Research · 2026",
+  "title": "Bitcoin Multi-Factor Regime Modeling",
+  "subtitle": "A multi-signal framework for identifying Bitcoin market regimes and dynamically adjusting exposure.",
+  "summary_title": "Research summary",
+  "summary_metrics": [
+    {
+      "value": "10+",
+      "label": "Alpha signals researched",
+      "tone": ""
+    },
+    {
+      "value": "2.82×",
+      "label": "Strategy ending value",
+      "tone": "positive"
+    },
+    {
+      "value": "−18.6%",
+      "label": "Maximum drawdown",
+      "tone": "risk"
+    }
+  ],
+  "summary_bullets": [
+    "Researched 10+ heterogeneous Bitcoin alpha signals spanning valuation, on-chain positioning, miner economics, investor sentiment, and technical momentum, including MVRV, Holder Profitability, Fear & Greed, Puell Multiple, Hash Ribbons, and trend/momentum indicators.",
+    "Developed a multi-signal regime-classification framework to identify low-, intermediate-, and high-valuation market states and dynamically adjust exposure rather than relying on static buy-and-hold positioning.",
+    "Backtested the regime-based allocation strategy across multiple market cycles, growing initial capital to 2.82× with 18.6% maximum drawdown, versus 2.68× and 58.4% maximum drawdown for Bitcoin buy-and-hold.",
+    "Evaluated signal persistence, regime stability, turnover, drawdown behavior, and robustness across parameter specifications, with emphasis on distinguishing genuine predictive information from highly correlated on-chain and technical indicators."
+  ],
+  "figures": [
+    {
+      "kicker": "01 / SIGNAL FILTERS",
+      "title": "Testing trend and confirmation signals",
+      "image": "/assets/filter-comparison.png",
+      "alt": "Equity and drawdown comparison for several Bitcoin trend filters",
+      "caption": "Equity and drawdown across trend-filter specifications. Select to enlarge."
+    },
+    {
+      "kicker": "02 / REGIME MODEL",
+      "title": "Classifying low-, intermediate-, and high-valuation markets",
+      "image": "/assets/regime-framework.png",
+      "alt": "Bitcoin multi-factor score, valuation regimes, and price",
+      "caption": "Multi-factor score combining valuation, miner economics, macro conditions, and sentiment."
+    },
+    {
+      "kicker": "03 / RESULTS",
+      "title": "Comparable upside with substantially lower drawdown",
+      "image": "/assets/final-comparison.png",
+      "alt": "Combined Bitcoin strategy compared with buy-and-hold",
+      "caption": "Strategy: 2.82× ending value and 18.6% maximum drawdown. Bitcoin buy-and-hold: 2.68× and 58.4%."
+    }
+  ],
+  "footer_text": "Source: Week 5 four-week research summary, Bitcoin section. For research and educational purposes only. This is not investment advice."
+}

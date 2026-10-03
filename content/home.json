@@ -1,0 +1,66 @@
+{
+  "page_title": "Evelyn Chen · Quantitative Research",
+  "meta_description": "Evelyn Chen's quantitative research portfolio, featuring Bitcoin multi-factor regime modeling and systematic strategy research.",
+  "eyebrow": "Quantitative Research · Systematic Trading",
+  "first_name": "Evelyn",
+  "last_name": "Chen",
+  "role": "Researching signals, market regimes, and risk-aware strategies.",
+  "intro": "I build reproducible data pipelines, test heterogeneous market signals, and examine whether promising backtests survive drawdowns, parameter changes, and real implementation constraints.",
+  "focus_label": "CURRENT FOCUS",
+  "focus_title": "Bitcoin regime modeling",
+  "focus_description": "Combining valuation, on-chain positioning, miner economics, sentiment, and trend signals into a risk-aware allocation framework.",
+  "focus_metrics": [
+    {
+      "value": "10+",
+      "label": "signals researched"
+    },
+    {
+      "value": "−18.6%",
+      "label": "strategy max drawdown"
+    }
+  ],
+  "research_section_title": "Selected Research",
+  "project_image": "/assets/final-comparison.png",
+  "project_image_alt": "Bitcoin multi-factor strategy compared with buy-and-hold",
+  "project_tags": [
+    "Bitcoin",
+    "Multi-factor",
+    "Regime modeling"
+  ],
+  "project_title": "Bitcoin Multi-Factor Regime Modeling",
+  "project_summary": "A daily allocation framework that combines market-state classification with technical confirmation to reduce drawdowns across Bitcoin cycles.",
+  "project_bullets": [
+    {
+      "lead": "Researched 10+ heterogeneous Bitcoin alpha signals",
+      "detail": "spanning valuation, on-chain positioning, miner economics, investor sentiment, and technical momentum, including MVRV, Holder Profitability, Fear & Greed, Puell Multiple, Hash Ribbons, and trend indicators."
+    },
+    {
+      "lead": "Developed a multi-signal regime-classification framework",
+      "detail": "to identify low-, intermediate-, and high-valuation market states and dynamically adjust exposure rather than relying on static buy-and-hold positioning."
+    },
+    {
+      "lead": "Backtested the regime-based allocation strategy",
+      "detail": "across multiple market cycles, growing initial capital to 2.82× with 18.6% maximum drawdown, versus 2.68× and 58.4% maximum drawdown for Bitcoin buy-and-hold."
+    },
+    {
+      "lead": "Evaluated signal persistence, regime stability, turnover, drawdown behavior, and robustness",
+      "detail": "across parameter specifications, emphasizing the distinction between genuine predictive information and highly correlated indicators."
+    }
+  ],
+  "toolbox_title": "Toolbox",
+  "toolbox_items": [
+    {
+      "title": "RESEARCH",
+      "description": "Factor analysis · regime classification · backtesting · robustness checks"
+    },
+    {
+      "title": "DATA",
+      "description": "Python · pandas · Coin Metrics · on-chain and market data alignment"
+    },
+    {
+      "title": "RISK",
+      "description": "Drawdown analysis · turnover · transaction costs · benchmark comparison"
+    }
+  ],
+  "footer_text": "© 2026 Evelyn Chen · Quantitative research portfolio"
+}

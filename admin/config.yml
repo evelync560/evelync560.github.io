@@ -1,0 +1,98 @@
+backend:
+  name: turbo-github
+  turbo_site_id: REPLACE_WITH_DECAP_TURBO_SITE_ID
+  branch: main
+
+media_folder: assets
+public_folder: /assets
+
+editor:
+  preview: false
+
+collections:
+  - name: pages
+    label: Website content
+    files:
+      - name: homepage
+        label: Homepage
+        file: content/home.json
+        format: json
+        fields:
+          - { label: Browser title, name: page_title, widget: string }
+          - { label: Search description, name: meta_description, widget: text }
+          - { label: Small heading, name: eyebrow, widget: string }
+          - { label: First name, name: first_name, widget: string }
+          - { label: Last name, name: last_name, widget: string }
+          - { label: Main statement, name: role, widget: string }
+          - { label: Introduction, name: intro, widget: text }
+          - { label: Focus label, name: focus_label, widget: string }
+          - { label: Focus title, name: focus_title, widget: string }
+          - { label: Focus description, name: focus_description, widget: text }
+          - label: Focus metrics
+            name: focus_metrics
+            widget: list
+            min: 2
+            max: 2
+            fields:
+              - { label: Value, name: value, widget: string }
+              - { label: Label, name: label, widget: string }
+          - { label: Research section title, name: research_section_title, widget: string }
+          - { label: Project image, name: project_image, widget: image }
+          - { label: Project image description, name: project_image_alt, widget: string }
+          - { label: Project tags, name: project_tags, widget: list, field: { label: Tag, name: tag, widget: string } }
+          - { label: Project title, name: project_title, widget: string }
+          - { label: Project summary, name: project_summary, widget: text }
+          - label: Résumé bullets
+            name: project_bullets
+            widget: list
+            fields:
+              - { label: Bold opening, name: lead, widget: string }
+              - { label: Supporting detail, name: detail, widget: text }
+          - { label: Toolbox title, name: toolbox_title, widget: string }
+          - label: Toolbox items
+            name: toolbox_items
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - { label: Footer, name: footer_text, widget: string }
+
+      - name: bitcoin_research
+        label: Bitcoin research page
+        file: content/bitcoin.json
+        format: json
+        fields:
+          - { label: Browser title, name: page_title, widget: string }
+          - { label: Search description, name: meta_description, widget: text }
+          - { label: Small heading, name: eyebrow, widget: string }
+          - { label: Page title, name: title, widget: string }
+          - { label: Subtitle, name: subtitle, widget: text }
+          - { label: Summary heading, name: summary_title, widget: string }
+          - label: Headline metrics
+            name: summary_metrics
+            widget: list
+            min: 3
+            max: 3
+            fields:
+              - { label: Value, name: value, widget: string }
+              - { label: Label, name: label, widget: string }
+              - label: Color
+                name: tone
+                widget: select
+                options:
+                  - { label: Neutral, value: "" }
+                  - { label: Green, value: positive }
+                  - { label: Orange, value: risk }
+          - { label: Research bullets, name: summary_bullets, widget: list, field: { label: Bullet, name: bullet, widget: text } }
+          - label: Charts
+            name: figures
+            widget: list
+            min: 3
+            max: 3
+            fields:
+              - { label: Section label, name: kicker, widget: string }
+              - { label: Section heading, name: title, widget: string }
+              - { label: Chart image, name: image, widget: image }
+              - { label: Image description, name: alt, widget: string }
+              - { label: Caption, name: caption, widget: text }
+          - { label: Footer note, name: footer_text, widget: text }
