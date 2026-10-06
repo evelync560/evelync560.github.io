@@ -42,19 +42,6 @@ collections:
           - { label: Project tags, name: project_tags, widget: list, field: { label: Tag, name: tag, widget: string } }
           - { label: Project title, name: project_title, widget: string }
           - { label: Project summary, name: project_summary, widget: text }
-          - label: Résumé bullets
-            name: project_bullets
-            widget: list
-            fields:
-              - { label: Bold opening, name: lead, widget: string }
-              - { label: Supporting detail, name: detail, widget: text }
-          - { label: Toolbox title, name: toolbox_title, widget: string }
-          - label: Toolbox items
-            name: toolbox_items
-            widget: list
-            fields:
-              - { label: Title, name: title, widget: string }
-              - { label: Description, name: description, widget: text }
           - { label: Footer, name: footer_text, widget: string }
 
       - name: bitcoin_research
