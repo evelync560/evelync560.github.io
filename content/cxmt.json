@@ -1,0 +1,50 @@
+{
+  "page_title": "CXMT Cross-Market Arbitrage · Evelyn Chen",
+  "meta_description": "CXMT cross-market basis, funding, and arbitrage research by Evelyn Chen.",
+  "eyebrow": "Personal Research Project · Cross-Market Arbitrage · 2026",
+  "title": "CXMT Cross-Market Arbitrage & Price Discovery",
+  "subtitle": "A five-minute study of Shanghai-listed CXMT, Hyperliquid's xyz:CXMT perpetual, and the funding mechanics that shape their price basis.",
+  "summary_title": "Research summary",
+  "summary_metrics": [
+    { "value": "4.08%", "label": "Average observed discount", "tone": "" },
+    { "value": "6", "label": "Out-of-sample trades", "tone": "positive" },
+    { "value": "+0.73%", "label": "Out-of-sample net return", "tone": "positive" }
+  ],
+  "summary_bullets": [
+    "Built an auditable five-minute data pipeline across Hyperliquid, JoinQuant, and Yahoo Finance, aligning cash and perpetual prices, time zones, and currency conversion.",
+    "Derived a basis mean-reversion hypothesis from HIP-3 oracle and funding mechanics, including the post-close decay of the oracle premium.",
+    "Backtested a cost-aware long-equity / short-perpetual strategy with T+1 restrictions, funding, execution costs, and out-of-sample monitoring."
+  ],
+  "data_title": "A synchronized five-minute panel across three venues",
+  "data_rows": [
+    { "block": "Cash equity", "frequency": "5 min", "content": "Shanghai-listed CXMT 688825 close price", "source": "JoinQuant" },
+    { "block": "Perpetual", "frequency": "5 min", "content": "Hyperliquid xyz:CXMT price and funding", "source": "Hyperliquid" },
+    { "block": "FX", "frequency": "5 min aligned", "content": "USD/CNH conversion for a common CNY price", "source": "Yahoo Finance" },
+    { "block": "Derived series", "frequency": "5 min", "content": "CNY-adjusted perpetual price, basis, funding carry, and costs", "source": "Calculated" }
+  ],
+  "data_note": "The initial research window ran from July 27 to August 17, 2026. Observations after August 17 are treated as out of sample.",
+  "basis_in_sample": "Average perpetual discount: 4.08%",
+  "basis_out_sample": "The basis continued to narrow",
+  "basis_explanation": "The perpetual and the A-share trade under different hours, settlement rules, and access constraints. The HIP-3 oracle links the two venues, but T+1 execution, limited shorting, funding, and fragmented liquidity prevent immediate convergence.",
+  "funding_explanation": "xyz:CXMT is a HIP-3 builder-deployed perpetual operated by trade.xyz. Its oracle carries the external reference price on-chain and updates roughly every three seconds.",
+  "funding_note": "After the A-share closes, the external anchor disappears. An EWMA pulls the oracle toward the executable market range; once IPD reaches zero, premium and funding also approach zero.",
+  "funding_decay_rows": [
+    { "time": "15:00", "rate": "−0.2420", "width": "100%" },
+    { "time": "16:00", "rate": "−0.1031", "width": "42.6%" },
+    { "time": "17:00", "rate": "−0.0325", "width": "13.4%" },
+    { "time": "18:00", "rate": "−0.0129", "width": "5.3%" },
+    { "time": "19:00", "rate": "−0.0057", "width": "2.4%" },
+    { "time": "20:00", "rate": "+0.0034", "width": "0%" }
+  ],
+  "intraday_note": "The signal was highly profitable in the study, but mainland equity T+1 and short-sale limits make the assumed intraday execution impractical.",
+  "interday_rule": "Enter at 1.2 ≤ Z < 3; exit at Z ≤ 0; stop at Z ≥ 3; respect A-share T+1.",
+  "interday_rows": [
+    { "sample": "In sample", "trades": "10", "win_rate": "60.0%", "basis": "+7.34%", "funding": "−6.07%", "cost": "−2.00%", "net": "−0.73%" },
+    { "sample": "Out of sample", "trades": "6", "win_rate": "66.7%", "basis": "+2.809%", "funding": "−0.879%", "cost": "−1.20%", "net": "+0.730%" }
+  ],
+  "continuation_rows": [
+    { "approach": "2σ paired-arbitrage strategy", "result": "7 trades · +49.26% fixed-capital net · +11.22% annualized", "meaning": "Relative-value trading captured repeated convergence over a 4.42-year backtest; one trade remained open at −2.65%." },
+    { "approach": "Single-leg A/H rotation", "result": "Ending value 0.9398 · −6.02% net", "meaning": "Rotation preserved substantially more capital than holding the A-share (−53.19%) or H-share (−57.32%), but did not produce a positive return." }
+  ],
+  "footer_text": "For research and educational purposes only. Backtests are not evidence of future performance."
+}

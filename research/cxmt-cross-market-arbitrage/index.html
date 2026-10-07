@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="CXMT cross-market basis, funding, and arbitrage research by Evelyn Chen." />
+  <meta name="color-scheme" content="light dark" />
+  <title>CXMT Cross-Market Arbitrage · Evelyn Chen</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23315cc7'/%3E%3Cpath d='M18 21h28v7H18zm0 15h28v7H18z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/assets/academic.css" />
+</head>
+<body class="project-cxmt" data-content-source="/content/cxmt.json">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="Evelyn Chen home">Evelyn Chen</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/#about">about</a>
+        <a href="/#research">research</a>
+        <a href="https://github.com/evelync560" rel="noreferrer">github</a>
+        <button class="theme-button" type="button" data-theme-toggle aria-label="Toggle dark mode">☾</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="article-main">
+    <aside class="toc" aria-label="Contents">
+      <div class="toc-label">CONTENTS</div>
+      <nav>
+        <a href="#summary">Summary</a>
+        <a href="#data">Data</a>
+        <a href="#basis">Price basis</a>
+        <a href="#funding">Funding</a>
+        <a href="#strategy">Strategy</a>
+        <a href="#continuation">A/H continuation</a>
+      </nav>
+    </aside>
+
+    <article>
+      <a class="back-link" href="/#research">Back to research</a>
+      <p class="eyebrow" data-content-text="eyebrow">Personal Research Project · Cross-Market Arbitrage · 2026</p>
+      <h1 class="article-title" data-content-text="title">CXMT Cross-Market Arbitrage &amp; Price Discovery</h1>
+      <p class="article-subtitle" data-content-text="subtitle">A five-minute study of Shanghai-listed CXMT, Hyperliquid's xyz:CXMT perpetual, and the funding mechanics that shape their price basis.</p>
+
+      <div class="thesis" id="summary">
+        <h2 data-content-text="summary_title">Research summary</h2>
+        <div class="metric-grid" aria-label="Headline results" data-content-list="summary_metrics">
+          <div class="metric"><span class="metric-value">4.08%</span><span class="metric-label">Average observed discount</span></div>
+          <div class="metric positive"><span class="metric-value">6</span><span class="metric-label">Out-of-sample trades</span></div>
+          <div class="metric positive"><span class="metric-value">+0.73%</span><span class="metric-label">Out-of-sample net return</span></div>
+        </div>
+        <ul class="resume-points" data-content-list="summary_bullets">
+          <li>Built an auditable five-minute data pipeline across Hyperliquid, JoinQuant, and Yahoo Finance, aligning cash and perpetual prices, time zones, and currency conversion.</li>
+          <li>Derived a basis mean-reversion hypothesis from HIP-3 oracle and funding mechanics, including the post-close decay of the oracle premium.</li>
+          <li>Backtested a cost-aware long-equity / short-perpetual strategy with T+1 restrictions, funding, execution costs, and out-of-sample monitoring.</li>
+        </ul>
+      </div>
+
+      <section class="article-section" id="data">
+        <span class="section-kicker">01 / DATA</span>
+        <h2 data-content-text="data_title">A synchronized five-minute panel across three venues</h2>
+        <div class="table-wrap data-table-wrap">
+          <table class="research-table data-table cxmt-data-table">
+            <thead><tr><th>Block</th><th>Frequency</th><th>Content</th><th>Source</th></tr></thead>
+            <tbody data-content-list="data_rows">
+              <tr><td>Cash equity</td><td>5 min</td><td>Shanghai-listed CXMT 688825 close price</td><td>JoinQuant</td></tr>
+              <tr><td>Perpetual</td><td>5 min</td><td>Hyperliquid xyz:CXMT price and funding</td><td>Hyperliquid</td></tr>
+              <tr><td>FX</td><td>5 min aligned</td><td>USD/CNH conversion for a common CNY price</td><td>Yahoo Finance</td></tr>
+              <tr><td>Derived series</td><td>5 min</td><td>CNY-adjusted perpetual price, basis, funding carry, and costs</td><td>Calculated</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="data-note"><strong>Sample.</strong> <span data-content-text="data_note">The initial research window ran from July 27 to August 17, 2026. Observations after August 17 are treated as out of sample.</span></p>
+      </section>
+
+      <section class="article-section" id="basis">
+        <span class="section-kicker">02 / PRICE BASIS</span>
+        <h2>From a persistent discount to a narrower out-of-sample basis</h2>
+        <figure class="figure cxmt-schematic">
+          <img src="/assets/cxmt-basis-overview.svg" alt="Schematic of the CXMT A-share, Hyperliquid perpetual, and basis around the research cutoff" />
+          <figcaption>Schematic of the aligned panel. Research finished on August 17; later observations are out of sample.</figcaption>
+        </figure>
+        <div class="basis-periods">
+          <div><span>Research window</span><strong data-content-text="basis_in_sample">Average perpetual discount: 4.08%</strong><small>Through August 17</small></div>
+          <div><span>Out of sample</span><strong data-content-text="basis_out_sample">The basis continued to narrow</strong><small>After August 17</small></div>
+        </div>
+        <p class="section-intro" data-content-text="basis_explanation">The perpetual and the A-share trade under different hours, settlement rules, and access constraints. The HIP-3 oracle links the two venues, but T+1 execution, limited shorting, funding, and fragmented liquidity prevent immediate convergence.</p>
+      </section>
+
+      <section class="article-section" id="funding">
+        <span class="section-kicker">03 / HYPERLIQUID MECHANISM</span>
+        <h2>Funding converts oracle premium into a carrying cost</h2>
+        <div class="mechanism-grid">
+          <div class="mechanism-copy">
+            <p data-content-text="funding_explanation">xyz:CXMT is a HIP-3 builder-deployed perpetual operated by trade.xyz. Its oracle carries the external reference price on-chain and updates roughly every three seconds.</p>
+            <div class="formula-block" aria-label="Funding approximation">
+              <span>Premium</span><code>P = IPD / oracle price</code>
+              <span>Approximation</span><code>hourly funding ≈ premium / 16</code>
+            </div>
+            <p class="method-note" data-content-text="funding_note">After the A-share closes, the external anchor disappears. An EWMA pulls the oracle toward the executable market range; once IPD reaches zero, premium and funding also approach zero.</p>
+          </div>
+          <div class="decay-panel">
+            <h3>Observed post-close decay</h3>
+            <div class="decay-list" data-content-list="funding_decay_rows">
+              <div><time>15:00</time><strong>−0.2420</strong><span style="--decay:100%"></span></div>
+              <div><time>16:00</time><strong>−0.1031</strong><span style="--decay:42.6%"></span></div>
+              <div><time>17:00</time><strong>−0.0325</strong><span style="--decay:13.4%"></span></div>
+              <div><time>18:00</time><strong>−0.0129</strong><span style="--decay:5.3%"></span></div>
+              <div><time>19:00</time><strong>−0.0057</strong><span style="--decay:2.4%"></span></div>
+              <div><time>20:00</time><strong>+0.0034</strong><span style="--decay:0%"></span></div>
+            </div>
+            <p>Roughly 40% of the previous hour's negative funding remained after each step.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="article-section" id="strategy">
+        <span class="section-kicker">04 / STRATEGY</span>
+        <h2>Intraday results identify the signal; interday trading tests feasibility</h2>
+        <div class="strategy-comparison">
+          <section>
+            <div class="comparison-heading"><span>Intraday</span><strong>Diagnostic only</strong></div>
+            <div class="sample-pair">
+              <div><small>Through Aug 17</small><strong>+17.13%</strong><span>15 trades · 86.7% win rate</span></div>
+              <div><small>After strategy design</small><strong>+7.80%</strong><span>16 trades · 87.5% win rate</span></div>
+            </div>
+            <p data-content-text="intraday_note">The signal was highly profitable in the study, but mainland equity T+1 and short-sale limits make the assumed intraday execution impractical.</p>
+          </section>
+          <section>
+            <div class="comparison-heading"><span>Interday</span><strong>Execution focus</strong></div>
+            <p class="rule-line" data-content-text="interday_rule">Enter at 1.2 ≤ Z &lt; 3; exit at Z ≤ 0; stop at Z ≥ 3; respect A-share T+1.</p>
+            <div class="table-wrap compact-table-wrap">
+              <table class="research-table compact-results">
+                <thead><tr><th>Sample</th><th>Trades</th><th>Win rate</th><th>Basis</th><th>Funding</th><th>Cost</th><th>Net</th></tr></thead>
+                <tbody data-content-list="interday_rows">
+                  <tr><td>In sample</td><td>10</td><td>60.0%</td><td>+7.34%</td><td>−6.07%</td><td>−2.00%</td><td>−0.73%</td></tr>
+                  <tr><td>Out of sample</td><td>6</td><td>66.7%</td><td>+2.809%</td><td>−0.879%</td><td>−1.20%</td><td>+0.730%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="article-section" id="continuation">
+        <span class="section-kicker">05 / CONTINUATION</span>
+        <h2>Testing whether the framework extends to A/H shares</h2>
+        <div class="table-wrap continuation-wrap">
+          <table class="research-table continuation-table">
+            <thead><tr><th>Approach</th><th>Sample result</th><th>What it shows</th></tr></thead>
+            <tbody data-content-list="continuation_rows">
+              <tr><td>2σ paired-arbitrage strategy</td><td>7 trades · +49.26% fixed-capital net · +11.22% annualized</td><td>Relative-value trading captured repeated convergence over a 4.42-year backtest; one trade remained open at −2.65%.</td></tr>
+              <tr><td>Single-leg A/H rotation</td><td>Ending value 0.9398 · −6.02% net</td><td>Rotation preserved substantially more capital than holding the A-share (−53.19%) or H-share (−57.32%), but did not produce a positive return.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="article-footer"><p data-content-text="footer_text">For research and educational purposes only. Backtests are not evidence of future performance.</p></footer>
+    </article>
+  </main>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

@@ -28,6 +28,58 @@ const renderManagedLists = (content) => {
     }));
   }
 
+  const projects = document.querySelector('[data-content-list="projects"]');
+  if (projects && Array.isArray(content.projects)) {
+    replaceChildren(projects, content.projects.map((item) => {
+      const article = document.createElement('article');
+      article.className = 'project-card';
+
+      const visual = document.createElement('div');
+      visual.className = 'project-visual';
+      const image = document.createElement('img');
+      image.src = item.image;
+      image.alt = item.alt;
+      visual.append(image);
+
+      const projectContent = document.createElement('div');
+      projectContent.className = 'project-content';
+      const tags = document.createElement('div');
+      tags.className = 'tags';
+      tags.setAttribute('aria-label', 'Research topics');
+      (item.tags || []).forEach((label) => {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = label;
+        tags.append(tag);
+      });
+      const title = document.createElement('h3');
+      title.textContent = item.title;
+      const summary = document.createElement('p');
+      summary.className = 'project-summary';
+      summary.textContent = item.summary;
+      const metrics = document.createElement('div');
+      metrics.className = 'project-metrics';
+      metrics.setAttribute('aria-label', 'Headline results');
+      (item.metrics || []).forEach((metricItem) => {
+        const metric = document.createElement('div');
+        const value = document.createElement('strong');
+        const label = document.createElement('span');
+        value.textContent = metricItem.value;
+        label.textContent = metricItem.label;
+        metric.append(value, label);
+        metrics.append(metric);
+      });
+      const link = document.createElement('a');
+      link.className = 'project-link';
+      link.href = item.link;
+      link.textContent = 'View research';
+
+      projectContent.append(tags, title, summary, metrics, link);
+      article.append(visual, projectContent);
+      return article;
+    }));
+  }
+
   const tags = document.querySelector('[data-content-list="project_tags"]');
   if (tags && Array.isArray(content.project_tags)) {
     replaceChildren(tags, content.project_tags.map((item) => {
@@ -137,6 +189,47 @@ const renderManagedLists = (content) => {
     replaceChildren(resultRows, content.result_rows.map((item) => {
       const row = document.createElement('tr');
       [item.approach, item.return, item.drawdown, item.sharpe, item.calmar].forEach((value) => {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.append(cell);
+      });
+      return row;
+    }));
+  }
+
+  const fundingDecayRows = document.querySelector('[data-content-list="funding_decay_rows"]');
+  if (fundingDecayRows && Array.isArray(content.funding_decay_rows)) {
+    replaceChildren(fundingDecayRows, content.funding_decay_rows.map((item) => {
+      const row = document.createElement('div');
+      const time = document.createElement('time');
+      const rate = document.createElement('strong');
+      const bar = document.createElement('span');
+      time.textContent = item.time;
+      rate.textContent = item.rate;
+      bar.style.setProperty('--decay', item.width);
+      row.append(time, rate, bar);
+      return row;
+    }));
+  }
+
+  const interdayRows = document.querySelector('[data-content-list="interday_rows"]');
+  if (interdayRows && Array.isArray(content.interday_rows)) {
+    replaceChildren(interdayRows, content.interday_rows.map((item) => {
+      const row = document.createElement('tr');
+      [item.sample, item.trades, item.win_rate, item.basis, item.funding, item.cost, item.net].forEach((value) => {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.append(cell);
+      });
+      return row;
+    }));
+  }
+
+  const continuationRows = document.querySelector('[data-content-list="continuation_rows"]');
+  if (continuationRows && Array.isArray(content.continuation_rows)) {
+    replaceChildren(continuationRows, content.continuation_rows.map((item) => {
+      const row = document.createElement('tr');
+      [item.approach, item.result, item.meaning].forEach((value) => {
         const cell = document.createElement('td');
         cell.textContent = value;
         row.append(cell);

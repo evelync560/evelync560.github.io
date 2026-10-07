@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Evelyn Chen's quantitative research portfolio, featuring Bitcoin multi-factor regime modeling and systematic strategy research." />
+  <meta name="description" content="Evelyn Chen's quantitative research portfolio, featuring Bitcoin regime modeling and CXMT cross-market arbitrage." />
   <meta name="color-scheme" content="light dark" />
   <title>Evelyn Chen · Quantitative Research</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23f7931a'/%3E%3Cpath d='M19 17h28v7H28v5h16v7H28v5h19v7H19z' fill='white'/%3E%3C/svg%3E" />
@@ -53,26 +53,32 @@
         <h2 class="section-title" id="research-title" data-content-text="research_section_title">Selected Research</h2>
         <p>Strategy research, backtests, and visual results.</p>
       </div>
-      <article class="project-card">
-        <div class="project-visual">
-          <img src="/assets/final-comparison.png" alt="Bitcoin multi-factor strategy compared with buy-and-hold" data-content-image="project_image" data-content-alt="project_image_alt" />
-        </div>
-        <div class="project-content">
-          <div class="tags" aria-label="Research topics" data-content-list="project_tags">
-            <span class="tag">Bitcoin</span>
-            <span class="tag">Multi-factor</span>
-            <span class="tag">Regime modeling</span>
+      <div class="project-list" data-content-list="projects">
+        <article class="project-card">
+          <div class="project-visual">
+            <img src="/assets/btc_three_factor_low_mid_high_ema_2021_simple_en.png" alt="Bitcoin valuation regimes and technical signals" />
           </div>
-          <h3 data-content-text="project_title">Bitcoin Multi-Factor Regime Modeling</h3>
-          <p class="project-summary" data-content-text="project_summary">A daily allocation framework that combines market-state classification with technical confirmation to reduce drawdowns across Bitcoin cycles.</p>
-          <div class="project-metrics" aria-label="Headline results">
-            <div><strong>2.82×</strong><span>ending value</span></div>
-            <div><strong>−18.6%</strong><span>max drawdown</span></div>
-            <div><strong>10+</strong><span>signals tested</span></div>
+          <div class="project-content">
+            <div class="tags" aria-label="Research topics"><span class="tag">Bitcoin</span><span class="tag">Multi-factor</span><span class="tag">Regime modeling</span></div>
+            <h3>Bitcoin Multi-Factor Regime Modeling</h3>
+            <p class="project-summary">A daily allocation framework that combines market-state classification with technical confirmation to reduce drawdowns across Bitcoin cycles.</p>
+            <div class="project-metrics" aria-label="Headline results"><div><strong>2.82×</strong><span>ending value</span></div><div><strong>−18.6%</strong><span>max drawdown</span></div><div><strong>10+</strong><span>signals tested</span></div></div>
+            <a class="project-link" href="/research/bitcoin-multi-factor-regime-modeling/">View research</a>
           </div>
-          <a class="project-link" href="/research/bitcoin-multi-factor-regime-modeling/">View research</a>
-        </div>
-      </article>
+        </article>
+        <article class="project-card">
+          <div class="project-visual">
+            <img src="/assets/cxmt-basis-overview.svg" alt="CXMT A-share and Hyperliquid perpetual basis research schematic" />
+          </div>
+          <div class="project-content">
+            <div class="tags" aria-label="Research topics"><span class="tag">Cross-market</span><span class="tag">Basis &amp; funding</span><span class="tag">Out-of-sample</span></div>
+            <h3>CXMT Cross-Market Arbitrage &amp; Price Discovery</h3>
+            <p class="project-summary">A five-minute study of the CXMT A-share, Hyperliquid perpetual, funding mechanics, and implementable basis convergence.</p>
+            <div class="project-metrics" aria-label="Headline results"><div><strong>4.08%</strong><span>average discount</span></div><div><strong>6</strong><span>OOS trades</span></div><div><strong>+0.73%</strong><span>OOS net</span></div></div>
+            <a class="project-link" href="/research/cxmt-cross-market-arbitrage/">View research</a>
+          </div>
+        </article>
+      </div>
     </section>
   </main>
 

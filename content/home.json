@@ -1,6 +1,6 @@
 {
   "project_summary": "A daily allocation framework that combines market-state classification with technical confirmation to reduce drawdowns across Bitcoin cycles.",
-  "meta_description": "Evelyn Chen's quantitative research portfolio, featuring Bitcoin multi-factor regime modeling and systematic strategy research.",
+  "meta_description": "Evelyn Chen's quantitative research portfolio, featuring Bitcoin regime modeling and CXMT cross-market arbitrage.",
   "page_title": "Evelyn Chen · Quantitative Research",
   "eyebrow": "Quantitative Research · Systematic Trading",
   "project_bullets": [
@@ -62,5 +62,33 @@
     "Multi-factor",
     "Regime modeling"
   ],
-  "project_image_alt": "Bitcoin multi-factor strategy compared with buy-and-hold"
+  "project_image_alt": "Bitcoin multi-factor strategy compared with buy-and-hold",
+  "projects": [
+    {
+      "image": "/assets/btc_three_factor_low_mid_high_ema_2021_simple_en.png",
+      "alt": "Bitcoin valuation regimes and technical signals",
+      "tags": ["Bitcoin", "Multi-factor", "Regime modeling"],
+      "title": "Bitcoin Multi-Factor Regime Modeling",
+      "summary": "A daily allocation framework that combines market-state classification with technical confirmation to reduce drawdowns across Bitcoin cycles.",
+      "metrics": [
+        { "value": "2.82×", "label": "ending value" },
+        { "value": "−18.6%", "label": "max drawdown" },
+        { "value": "10+", "label": "signals tested" }
+      ],
+      "link": "/research/bitcoin-multi-factor-regime-modeling/"
+    },
+    {
+      "image": "/assets/cxmt-basis-overview.svg",
+      "alt": "CXMT A-share and Hyperliquid perpetual basis research schematic",
+      "tags": ["Cross-market", "Basis & funding", "Out-of-sample"],
+      "title": "CXMT Cross-Market Arbitrage & Price Discovery",
+      "summary": "A five-minute study of the CXMT A-share, Hyperliquid perpetual, funding mechanics, and implementable basis convergence.",
+      "metrics": [
+        { "value": "4.08%", "label": "average discount" },
+        { "value": "6", "label": "OOS trades" },
+        { "value": "+0.73%", "label": "OOS net" }
+      ],
+      "link": "/research/cxmt-cross-market-arbitrage/"
+    }
+  ]
 }

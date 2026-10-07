@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">CXMT cross-market basis overview</title>
+  <desc id="desc">A schematic showing aligned Shanghai equity and Hyperliquid perpetual prices with a narrowing basis.</desc>
+  <rect width="960" height="540" fill="#f5f7fb"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="58" y="62" fill="#1d2430" font-size="28" font-weight="700">CXMT cross-market basis</text>
+    <text x="58" y="94" fill="#657080" font-size="16">688825 equity / xyz:CXMT perpetual / USD-CNH aligned at 5 minutes</text>
+    <line x1="60" y1="414" x2="900" y2="414" stroke="#cfd5de" stroke-width="2"/>
+    <line x1="60" y1="142" x2="60" y2="414" stroke="#cfd5de" stroke-width="2"/>
+    <path d="M62 345 C118 309 145 326 190 290 S268 232 324 260 S403 222 463 204 S539 166 594 194 S677 166 738 184 S826 139 898 156" fill="none" stroke="#2d5f9a" stroke-width="6" stroke-linecap="round"/>
+    <path d="M62 392 C118 371 146 380 190 342 S267 280 324 302 S404 258 463 246 S541 204 594 224 S679 195 738 207 S827 151 898 164" fill="none" stroke="#e8812b" stroke-width="6" stroke-linecap="round"/>
+    <path d="M62 451 C145 470 225 458 307 450 S470 439 552 434 S716 428 898 423" fill="none" stroke="#2a8a78" stroke-width="5" stroke-linecap="round"/>
+    <line x1="566" y1="128" x2="566" y2="474" stroke="#9aa4b1" stroke-width="2" stroke-dasharray="8 8"/>
+    <text x="582" y="146" fill="#4e5867" font-size="15" font-weight="650">Research cutoff</text>
+    <text x="582" y="168" fill="#687383" font-size="14">Out-of-sample begins</text>
+    <g font-size="15" font-weight="650">
+      <line x1="650" y1="64" x2="690" y2="64" stroke="#2d5f9a" stroke-width="5"/>
+      <text x="702" y="70" fill="#354052">A-share close</text>
+      <line x1="650" y1="94" x2="690" y2="94" stroke="#e8812b" stroke-width="5"/>
+      <text x="702" y="100" fill="#354052">Perpetual in CNY</text>
+      <line x1="650" y1="124" x2="690" y2="124" stroke="#2a8a78" stroke-width="5"/>
+      <text x="702" y="130" fill="#354052">Basis</text>
+    </g>
+    <text x="60" y="505" fill="#657080" font-size="14">Schematic summary of the aligned research panel</text>
+  </g>
+</svg>

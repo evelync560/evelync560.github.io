@@ -37,11 +37,25 @@ collections:
               - { label: Value, name: value, widget: string }
               - { label: Label, name: label, widget: string }
           - { label: Research section title, name: research_section_title, widget: string }
-          - { label: Project image, name: project_image, widget: image }
-          - { label: Project image description, name: project_image_alt, widget: string }
-          - { label: Project tags, name: project_tags, widget: list, field: { label: Tag, name: tag, widget: string } }
-          - { label: Project title, name: project_title, widget: string }
-          - { label: Project summary, name: project_summary, widget: text }
+          - label: Projects
+            name: projects
+            widget: list
+            min: 2
+            fields:
+              - { label: Image, name: image, widget: image }
+              - { label: Image description, name: alt, widget: string }
+              - { label: Tags, name: tags, widget: list, field: { label: Tag, name: tag, widget: string } }
+              - { label: Title, name: title, widget: string }
+              - { label: Summary, name: summary, widget: text }
+              - label: Headline metrics
+                name: metrics
+                widget: list
+                min: 3
+                max: 3
+                fields:
+                  - { label: Value, name: value, widget: string }
+                  - { label: Label, name: label, widget: string }
+              - { label: Page link, name: link, widget: string }
           - { label: Footer, name: footer_text, widget: string }
 
       - name: bitcoin_research
@@ -134,4 +148,83 @@ collections:
               - { label: Sharpe ratio, name: sharpe, widget: string }
               - { label: Calmar ratio, name: calmar, widget: string }
           - { label: Results takeaway, name: result_summary, widget: text }
+          - { label: Footer note, name: footer_text, widget: text }
+
+      - name: cxmt_research
+        label: CXMT arbitrage research page
+        file: content/cxmt.json
+        format: json
+        fields:
+          - { label: Browser title, name: page_title, widget: string }
+          - { label: Search description, name: meta_description, widget: text }
+          - { label: Small heading, name: eyebrow, widget: string }
+          - { label: Page title, name: title, widget: string }
+          - { label: Subtitle, name: subtitle, widget: text }
+          - { label: Summary heading, name: summary_title, widget: string }
+          - label: Headline metrics
+            name: summary_metrics
+            widget: list
+            min: 3
+            max: 3
+            fields:
+              - { label: Value, name: value, widget: string }
+              - { label: Label, name: label, widget: string }
+              - label: Color
+                name: tone
+                widget: select
+                options:
+                  - { label: Neutral, value: "" }
+                  - { label: Green, value: positive }
+                  - { label: Blue, value: risk }
+          - { label: Research bullets, name: summary_bullets, widget: list, field: { label: Bullet, name: bullet, widget: text } }
+          - { label: Data section heading, name: data_title, widget: string }
+          - label: Data overview
+            name: data_rows
+            widget: list
+            min: 4
+            max: 4
+            fields:
+              - { label: Block, name: block, widget: string }
+              - { label: Frequency, name: frequency, widget: string }
+              - { label: Content, name: content, widget: text }
+              - { label: Source, name: source, widget: string }
+          - { label: Data sample note, name: data_note, widget: text }
+          - { label: Research-window finding, name: basis_in_sample, widget: string }
+          - { label: Out-of-sample finding, name: basis_out_sample, widget: string }
+          - { label: Basis explanation, name: basis_explanation, widget: text }
+          - { label: Funding mechanism, name: funding_explanation, widget: text }
+          - { label: Funding interpretation, name: funding_note, widget: text }
+          - label: Funding decay observations
+            name: funding_decay_rows
+            widget: list
+            min: 6
+            max: 6
+            fields:
+              - { label: Time, name: time, widget: string }
+              - { label: Funding rate, name: rate, widget: string }
+              - { label: Bar width, name: width, widget: string, hint: "Use a percentage, for example 42.6%" }
+          - { label: Intraday feasibility note, name: intraday_note, widget: text }
+          - { label: Interday rule, name: interday_rule, widget: text }
+          - label: Interday results
+            name: interday_rows
+            widget: list
+            min: 2
+            max: 2
+            fields:
+              - { label: Sample, name: sample, widget: string }
+              - { label: Trades, name: trades, widget: string }
+              - { label: Win rate, name: win_rate, widget: string }
+              - { label: Basis, name: basis, widget: string }
+              - { label: Funding, name: funding, widget: string }
+              - { label: Cost, name: cost, widget: string }
+              - { label: Net, name: net, widget: string }
+          - label: A/H continuation results
+            name: continuation_rows
+            widget: list
+            min: 2
+            max: 2
+            fields:
+              - { label: Approach, name: approach, widget: string }
+              - { label: Sample result, name: result, widget: text }
+              - { label: Interpretation, name: meaning, widget: text }
           - { label: Footer note, name: footer_text, widget: text }
