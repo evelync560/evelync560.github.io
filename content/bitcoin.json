@@ -16,12 +16,14 @@
     "Backtested the allocation strategy across multiple market cycles, growing initial capital to 2.82× with 18.6% maximum drawdown, versus 2.68× and 58.4% for Bitcoin buy-and-hold.",
     "Evaluated signal persistence, regime stability, turnover, drawdown behavior, and robustness across parameter specifications."
   ],
-  "data_title": "A compact, cross-cycle dataset",
+  "data_title": "Daily market, on-chain, miner, and sentiment data",
   "data_rows": [
-    { "label": "Inputs", "value": "MVRV Z-Score, hash rate, Fear & Greed, and price" },
-    { "label": "Signal history", "value": "2013–2026; common composite sample begins in 2018" },
-    { "label": "Backtest", "value": "2021 onward · daily · T+1 · 0.1% one-way cost" }
+    { "block": "Price / trading activity", "frequency": "Daily", "content": "BTC USD price, spot USD transaction amount, and derived volume", "source": "Coin Metrics + BTC daily dataset" },
+    { "block": "On-chain valuation", "frequency": "Daily", "content": "MVRV Z-Score", "source": "Checkonchain" },
+    { "block": "Miner state", "frequency": "Daily", "content": "Hash rate with 30-day and 60-day moving averages", "source": "Coin Metrics" },
+    { "block": "Market sentiment", "frequency": "Daily", "content": "Fear & Greed Index", "source": "Alternative.me" }
   ],
+  "data_note": "Signal history begins in 2013 and the common composite sample begins in February 2018. Because raw volume showed an anomaly around 2022, I replaced it with Coin Metrics spot USD transaction amount and derived BTC volume as transaction amount ÷ price. That series ends in May 2026; BTC price data extends through August 24, 2026.",
   "signal_intro": "After screening overlapping indicators for correlation and redundancy, I selected one representative signal from each economic dimension.",
   "figures": [
     {

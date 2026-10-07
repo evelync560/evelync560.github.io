@@ -58,12 +58,19 @@
 
       <section class="article-section" id="data">
         <span class="section-kicker">01 / DATA</span>
-        <h2 data-content-text="data_title">A compact, cross-cycle dataset</h2>
-        <div class="data-grid" data-content-list="data_rows">
-          <div><span>Inputs</span><strong>MVRV Z-Score, hash rate, Fear &amp; Greed, and price</strong></div>
-          <div><span>Signal history</span><strong>2013–2026; common composite sample begins in 2018</strong></div>
-          <div><span>Backtest</span><strong>2021 onward · daily · T+1 · 0.1% one-way cost</strong></div>
+        <h2 data-content-text="data_title">Daily market, on-chain, miner, and sentiment data</h2>
+        <div class="table-wrap data-table-wrap">
+          <table class="research-table data-table">
+            <thead><tr><th>Block</th><th>Frequency</th><th>Content</th><th>Source</th></tr></thead>
+            <tbody data-content-list="data_rows">
+              <tr><td>Price / trading activity</td><td>Daily</td><td>BTC USD price, spot USD transaction amount, and derived volume</td><td>Coin Metrics + BTC daily dataset</td></tr>
+              <tr><td>On-chain valuation</td><td>Daily</td><td>MVRV Z-Score</td><td>Checkonchain</td></tr>
+              <tr><td>Miner state</td><td>Daily</td><td>Hash rate with 30-day and 60-day moving averages</td><td>Coin Metrics</td></tr>
+              <tr><td>Market sentiment</td><td>Daily</td><td>Fear &amp; Greed Index</td><td>Alternative.me</td></tr>
+            </tbody>
+          </table>
         </div>
+        <p class="data-note"><strong>Sample and cleaning.</strong> <span data-content-text="data_note">Signal history begins in 2013 and the common composite sample begins in February 2018. Because raw volume showed an anomaly around 2022, I replaced it with Coin Metrics spot USD transaction amount and derived BTC volume as transaction amount ÷ price. That series ends in May 2026; BTC price data extends through August 24, 2026.</span></p>
       </section>
 
       <section class="article-section" id="signals">

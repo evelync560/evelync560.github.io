@@ -91,12 +91,12 @@ const renderManagedLists = (content) => {
   const dataRows = document.querySelector('[data-content-list="data_rows"]');
   if (dataRows && Array.isArray(content.data_rows)) {
     replaceChildren(dataRows, content.data_rows.map((item) => {
-      const row = document.createElement('div');
-      const label = document.createElement('span');
-      const value = document.createElement('strong');
-      label.textContent = item.label;
-      value.textContent = item.value;
-      row.append(label, value);
+      const row = document.createElement('tr');
+      [item.block, item.frequency, item.content, item.source].forEach((value) => {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.append(cell);
+      });
       return row;
     }));
   }

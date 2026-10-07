@@ -75,11 +75,14 @@ collections:
           - label: Data overview
             name: data_rows
             widget: list
-            min: 3
-            max: 3
+            min: 4
+            max: 4
             fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Value, name: value, widget: string }
+              - { label: Block, name: block, widget: string }
+              - { label: Frequency, name: frequency, widget: string }
+              - { label: Content, name: content, widget: text }
+              - { label: Source, name: source, widget: string }
+          - { label: Data sample and cleaning note, name: data_note, widget: text }
           - { label: Signal analysis introduction, name: signal_intro, widget: text }
           - label: Charts
             name: figures
