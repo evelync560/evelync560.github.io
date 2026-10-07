@@ -1,55 +1,85 @@
 {
   "page_title": "Bitcoin Multi-Factor Regime Modeling · Evelyn Chen",
-  "meta_description": "A concise visual summary of Evelyn Chen's Bitcoin multi-factor regime modeling research.",
-  "eyebrow": "Bitcoin · Multi-Factor Research · 2026",
+  "meta_description": "A concise, chart-led summary of Evelyn Chen's Bitcoin multi-factor regime modeling research.",
+  "eyebrow": "Personal Research Project · Bitcoin · 2026",
   "title": "Bitcoin Multi-Factor Regime Modeling",
   "subtitle": "A multi-signal framework for identifying Bitcoin market regimes and dynamically adjusting exposure.",
   "summary_title": "Research summary",
   "summary_metrics": [
-    {
-      "value": "10+",
-      "label": "Alpha signals researched",
-      "tone": ""
-    },
-    {
-      "value": "2.82×",
-      "label": "Strategy ending value",
-      "tone": "positive"
-    },
-    {
-      "value": "−18.6%",
-      "label": "Maximum drawdown",
-      "tone": "risk"
-    }
+    { "value": "10+", "label": "Alpha signals researched", "tone": "" },
+    { "value": "2.82×", "label": "Strategy ending value", "tone": "positive" },
+    { "value": "−18.6%", "label": "Maximum drawdown", "tone": "risk" }
   ],
   "summary_bullets": [
-    "Researched 10+ heterogeneous Bitcoin alpha signals spanning valuation, on-chain positioning, miner economics, investor sentiment, and technical momentum, including MVRV, Holder Profitability, Fear & Greed, Puell Multiple, Hash Ribbons, and trend/momentum indicators.",
-    "Developed a multi-signal regime-classification framework to identify low-, intermediate-, and high-valuation market states and dynamically adjust exposure rather than relying on static buy-and-hold positioning.",
-    "Backtested the regime-based allocation strategy across multiple market cycles, growing initial capital to 2.82× with 18.6% maximum drawdown, versus 2.68× and 58.4% maximum drawdown for Bitcoin buy-and-hold.",
-    "Evaluated signal persistence, regime stability, turnover, drawdown behavior, and robustness across parameter specifications, with emphasis on distinguishing genuine predictive information from highly correlated on-chain and technical indicators."
+    "Researched 10+ heterogeneous Bitcoin alpha signals spanning valuation, on-chain positioning, miner economics, investor sentiment, and technical momentum.",
+    "Developed a multi-signal regime-classification framework to identify low-, intermediate-, and high-valuation market states and dynamically adjust exposure.",
+    "Backtested the allocation strategy across multiple market cycles, growing initial capital to 2.82× with 18.6% maximum drawdown, versus 2.68× and 58.4% for Bitcoin buy-and-hold.",
+    "Evaluated signal persistence, regime stability, turnover, drawdown behavior, and robustness across parameter specifications."
   ],
+  "data_title": "A compact, cross-cycle dataset",
+  "data_rows": [
+    { "label": "Inputs", "value": "MVRV Z-Score, hash rate, Fear & Greed, and price" },
+    { "label": "Signal history", "value": "2013–2026; common composite sample begins in 2018" },
+    { "label": "Backtest", "value": "2021 onward · daily · T+1 · 0.1% one-way cost" }
+  ],
+  "signal_intro": "After screening overlapping indicators for correlation and redundancy, I selected one representative signal from each economic dimension.",
   "figures": [
     {
-      "kicker": "01 / SIGNAL FILTERS",
-      "title": "Testing trend and confirmation signals",
-      "image": "/assets/filter-comparison.png",
-      "alt": "Equity and drawdown comparison for several Bitcoin trend filters",
-      "caption": "Equity and drawdown across trend-filter specifications. Select to enlarge."
+      "kicker": "On-chain valuation",
+      "title": "MVRV Z-Score",
+      "insight": "The sample separates Bitcoin into distinct valuation zones with meaningfully different forward-return profiles.",
+      "image": "/assets/mvrv-z-score-zones.png",
+      "alt": "MVRV Z-Score Bitcoin price zones and simple NAV",
+      "caption": "90-day median returns by zone: +1.6%, +14.6%, and +42.8%. Select to enlarge."
     },
     {
-      "kicker": "02 / REGIME MODEL",
-      "title": "Classifying low-, intermediate-, and high-valuation markets",
-      "image": "/assets/regime-framework.png",
-      "alt": "Bitcoin multi-factor score, valuation regimes, and price",
-      "caption": "Multi-factor score combining valuation, miner economics, macro conditions, and sentiment."
+      "kicker": "Miner state",
+      "title": "Hash Ribbon",
+      "insight": "Hash-rate trends capture changes in miner stress and recovery that are not visible in price alone.",
+      "image": "/assets/hash-ribbon-zones.png",
+      "alt": "Hash Ribbon Bitcoin price zones and simple NAV",
+      "caption": "90-day median returns by zone: +8.0%, +9.2%, and −1.4%. Select to enlarge."
     },
     {
-      "kicker": "03 / RESULTS",
-      "title": "Comparable upside with substantially lower drawdown",
-      "image": "/assets/final-comparison.png",
-      "alt": "Combined Bitcoin strategy compared with buy-and-hold",
-      "caption": "Strategy: 2.82× ending value and 18.6% maximum drawdown. Bitcoin buy-and-hold: 2.68× and 58.4%."
+      "kicker": "Macro and sentiment",
+      "title": "Fear & Greed Index",
+      "insight": "Investor sentiment provides a separate view of risk appetite across the market cycle.",
+      "image": "/assets/fear-greed-zones.png",
+      "alt": "Fear and Greed Index Bitcoin price zones and simple NAV",
+      "caption": "90-day median returns by zone: −6.8%, +5.2%, and +9.6%. Select to enlarge."
+    },
+    {
+      "kicker": "Regime classification",
+      "title": "Three-factor composite score",
+      "insight": "The combined score maps daily observations into low-, intermediate-, and high-price zones.",
+      "image": "/assets/composite-score-zones.png",
+      "alt": "Bitcoin three-factor composite score zones and simple NAV",
+      "caption": "Common sample begins February 2018; zone NAVs execute with a one-day lag. Select to enlarge."
+    },
+    {
+      "kicker": "Backtest comparison",
+      "title": "Regime strategy vs. Bitcoin buy-and-hold",
+      "insight": "The strategy preserved comparable upside while materially reducing the depth of losses.",
+      "image": "/assets/btc_three_factor_low_mid_high_ema_2021_simple_en.png",
+      "alt": "Bitcoin regime strategy compared with buy-and-hold since 2021",
+      "caption": "Evaluation window: January 2021 to August 2026. Select to enlarge."
     }
   ],
-  "footer_text": "Source: Week 5 four-week research summary, Bitcoin section. For research and educational purposes only. This is not investment advice."
+  "scoring_rows": [
+    { "factor": "On-chain valuation: MVRV Z-Score", "points": "40", "rule": "Z ≤ 0 → 0 · 0 < Z < 1 → 20 · Z ≥ 1 → 40" },
+    { "factor": "Miner state: Hash Ribbon", "points": "30", "rule": "≤ 0% → 0 · 0%–10% → 15 · ≥ 10% → 30" },
+    { "factor": "Macro/sentiment: Fear & Greed", "points": "30", "rule": "≤ 25 → 0 · 25–75 → 15 · ≥ 75 → 30" }
+  ],
+  "strategy_rows": [
+    { "zone": "Low", "tone": "low", "rule": "Buy when EMA20 / EMA50 − 1 crosses above −5%. Exit at ≥0%, ≤−8%, a 12% price stop, or when leaving the zone.", "rationale": "Wait for momentum to recover after deep weakness; exit if the recovery fails." },
+    { "zone": "Mid", "tone": "mid", "rule": "Buy when EMA20 / EMA50 − 1 > 4%. Exit below 1% or when leaving the zone.", "rationale": "Use a 4% / 1% hysteresis band to confirm the medium-term uptrend and reduce whipsaws." },
+    { "zone": "High", "tone": "high", "rule": "Hold BTC only when EMA5 / EMA30 − 1 > 1%; otherwise stay in cash.", "rationale": "Stay invested only while short-term momentum remains stronger than the intermediate trend." }
+  ],
+  "strategy_note": "Backtest convention: T+1 execution · 0.1% one-way transaction cost · long or cash only.",
+  "result_rows": [
+    { "approach": "Combined strategy", "return": "+182%", "drawdown": "−19%", "sharpe": "0.97", "calmar": "1.75" },
+    { "approach": "BTC buy-and-hold", "return": "+168%", "drawdown": "−58%", "sharpe": "0.53", "calmar": "0.52" }
+  ],
+  "result_summary": "The strategy improved Sharpe from 0.53 to 0.97 and Calmar from 0.52 to 1.75, while reducing maximum drawdown from 58% to 19%.",
+  "footer_text": "For research and educational purposes only. This is not investment advice."
 }

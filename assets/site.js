@@ -87,6 +87,63 @@ const renderManagedLists = (content) => {
       return bullet;
     }));
   }
+
+  const dataRows = document.querySelector('[data-content-list="data_rows"]');
+  if (dataRows && Array.isArray(content.data_rows)) {
+    replaceChildren(dataRows, content.data_rows.map((item) => {
+      const row = document.createElement('div');
+      const label = document.createElement('span');
+      const value = document.createElement('strong');
+      label.textContent = item.label;
+      value.textContent = item.value;
+      row.append(label, value);
+      return row;
+    }));
+  }
+
+  const scoringRows = document.querySelector('[data-content-list="scoring_rows"]');
+  if (scoringRows && Array.isArray(content.scoring_rows)) {
+    replaceChildren(scoringRows, content.scoring_rows.map((item) => {
+      const row = document.createElement('tr');
+      [item.factor, item.points, item.rule].forEach((value) => {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.append(cell);
+      });
+      return row;
+    }));
+  }
+
+  const strategyRows = document.querySelector('[data-content-list="strategy_rows"]');
+  if (strategyRows && Array.isArray(content.strategy_rows)) {
+    replaceChildren(strategyRows, content.strategy_rows.map((item) => {
+      const row = document.createElement('tr');
+      const zoneCell = document.createElement('td');
+      const zone = document.createElement('span');
+      zone.className = `zone zone-${item.tone || 'mid'}`;
+      zone.textContent = item.zone;
+      zoneCell.append(zone);
+      const rule = document.createElement('td');
+      const rationale = document.createElement('td');
+      rule.textContent = item.rule;
+      rationale.textContent = item.rationale;
+      row.append(zoneCell, rule, rationale);
+      return row;
+    }));
+  }
+
+  const resultRows = document.querySelector('[data-content-list="result_rows"]');
+  if (resultRows && Array.isArray(content.result_rows)) {
+    replaceChildren(resultRows, content.result_rows.map((item) => {
+      const row = document.createElement('tr');
+      [item.approach, item.return, item.drawdown, item.sharpe, item.calmar].forEach((value) => {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.append(cell);
+      });
+      return row;
+    }));
+  }
 };
 
 const renderManagedFigures = (content) => {
@@ -96,9 +153,14 @@ const renderManagedFigures = (content) => {
     if (!figure) return;
     const image = section.querySelector('img');
     const button = section.querySelector('[data-lightbox]');
-    section.querySelector('.section-kicker').textContent = figure.kicker;
-    section.querySelector('h2').textContent = figure.title;
-    section.querySelector('figcaption').textContent = figure.caption;
+    const kicker = section.querySelector('[data-figure-kicker]');
+    const title = section.querySelector('[data-figure-title]');
+    const insight = section.querySelector('[data-figure-insight]');
+    const caption = section.querySelector('figcaption');
+    if (kicker) kicker.textContent = figure.kicker;
+    if (title) title.textContent = figure.title;
+    if (insight) insight.textContent = figure.insight;
+    if (caption) caption.textContent = figure.caption;
     if (image) {
       image.src = figure.image;
       image.alt = figure.alt;

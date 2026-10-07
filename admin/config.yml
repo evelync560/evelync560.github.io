@@ -71,15 +71,64 @@ collections:
                   - { label: Green, value: positive }
                   - { label: Orange, value: risk }
           - { label: Research bullets, name: summary_bullets, widget: list, field: { label: Bullet, name: bullet, widget: text } }
-          - label: Charts
-            name: figures
+          - { label: Data section heading, name: data_title, widget: string }
+          - label: Data overview
+            name: data_rows
             widget: list
             min: 3
             max: 3
             fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Value, name: value, widget: string }
+          - { label: Signal analysis introduction, name: signal_intro, widget: text }
+          - label: Charts
+            name: figures
+            widget: list
+            min: 5
+            max: 5
+            fields:
               - { label: Section label, name: kicker, widget: string }
               - { label: Section heading, name: title, widget: string }
+              - { label: Key insight, name: insight, widget: text }
               - { label: Chart image, name: image, widget: image }
               - { label: Image description, name: alt, widget: string }
               - { label: Caption, name: caption, widget: text }
+          - label: Composite-score rules
+            name: scoring_rows
+            widget: list
+            min: 3
+            max: 3
+            fields:
+              - { label: Factor, name: factor, widget: string }
+              - { label: Maximum points, name: points, widget: string }
+              - { label: Scoring rule, name: rule, widget: text }
+          - label: Strategy rules
+            name: strategy_rows
+            widget: list
+            min: 3
+            max: 3
+            fields:
+              - { label: Price zone, name: zone, widget: string }
+              - label: Zone color
+                name: tone
+                widget: select
+                options:
+                  - { label: Low / green, value: low }
+                  - { label: Mid / yellow, value: mid }
+                  - { label: High / red, value: high }
+              - { label: Strategy rule, name: rule, widget: text }
+              - { label: Rationale, name: rationale, widget: text }
+          - { label: Strategy note, name: strategy_note, widget: text }
+          - label: Performance results
+            name: result_rows
+            widget: list
+            min: 2
+            max: 2
+            fields:
+              - { label: Approach, name: approach, widget: string }
+              - { label: Cumulative return, name: return, widget: string }
+              - { label: Maximum drawdown, name: drawdown, widget: string }
+              - { label: Sharpe ratio, name: sharpe, widget: string }
+              - { label: Calmar ratio, name: calmar, widget: string }
+          - { label: Results takeaway, name: result_summary, widget: text }
           - { label: Footer note, name: footer_text, widget: text }

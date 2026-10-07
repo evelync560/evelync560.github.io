@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="A concise visual summary of Evelyn Chen's Bitcoin multi-factor regime modeling research." />
+  <meta name="description" content="A concise, chart-led summary of Evelyn Chen's Bitcoin multi-factor regime modeling research." />
   <meta name="color-scheme" content="light dark" />
   <title>Bitcoin Multi-Factor Regime Modeling · Evelyn Chen</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23f7931a'/%3E%3Cpath d='M19 17h28v7H28v5h16v7H28v5h19v7H19z' fill='white'/%3E%3C/svg%3E" />
@@ -26,16 +26,18 @@
     <aside class="toc" aria-label="Contents">
       <div class="toc-label">CONTENTS</div>
       <nav>
-        <a href="#summary">Research summary</a>
-        <a href="#signals">Signal filters</a>
-        <a href="#regimes">Regime model</a>
+        <a href="#summary">Summary</a>
+        <a href="#data">Data</a>
+        <a href="#signals">Analyze signals</a>
+        <a href="#composite">Composite score</a>
+        <a href="#strategy">Form the strategy</a>
         <a href="#results">Results</a>
       </nav>
     </aside>
 
     <article>
       <a class="back-link" href="/#research">Back to research</a>
-      <p class="eyebrow" data-content-text="eyebrow">Bitcoin · Multi-Factor Research · 2026</p>
+      <p class="eyebrow" data-content-text="eyebrow">Personal Research Project · Bitcoin · 2026</p>
       <h1 class="article-title" data-content-text="title">Bitcoin Multi-Factor Regime Modeling</h1>
       <p class="article-subtitle" data-content-text="subtitle">A multi-signal framework for identifying Bitcoin market regimes and dynamically adjusting exposure.</p>
 
@@ -47,56 +49,114 @@
           <div class="metric risk"><span class="metric-value">−18.6%</span><span class="metric-label">Maximum drawdown</span></div>
         </div>
         <ul class="resume-points" data-content-list="summary_bullets">
-          <li>Researched 10+ heterogeneous Bitcoin alpha signals spanning valuation, on-chain positioning, miner economics, investor sentiment, and technical momentum, including MVRV, Holder Profitability, Fear &amp; Greed, Puell Multiple, Hash Ribbons, and trend/momentum indicators.</li>
-          <li>Developed a multi-signal regime-classification framework to identify low-, intermediate-, and high-valuation market states and dynamically adjust exposure rather than relying on static buy-and-hold positioning.</li>
-          <li>Backtested the regime-based allocation strategy across multiple market cycles, growing initial capital to 2.82× with 18.6% maximum drawdown, versus 2.68× and 58.4% maximum drawdown for Bitcoin buy-and-hold.</li>
-          <li>Evaluated signal persistence, regime stability, turnover, drawdown behavior, and robustness across parameter specifications, with emphasis on distinguishing genuine predictive information from highly correlated on-chain and technical indicators.</li>
+          <li>Researched 10+ heterogeneous Bitcoin alpha signals spanning valuation, on-chain positioning, miner economics, investor sentiment, and technical momentum.</li>
+          <li>Developed a multi-signal regime-classification framework to identify low-, intermediate-, and high-valuation market states and dynamically adjust exposure.</li>
+          <li>Backtested the allocation strategy across multiple market cycles, growing initial capital to 2.82× with 18.6% maximum drawdown, versus 2.68× and 58.4% for Bitcoin buy-and-hold.</li>
+          <li>Evaluated signal persistence, regime stability, turnover, drawdown behavior, and robustness across parameter specifications.</li>
         </ul>
       </div>
 
-      <section class="article-section" id="signals" data-content-figure="0">
-        <span class="section-kicker">01 / SIGNAL FILTERS</span>
-        <h2>Testing trend and confirmation signals</h2>
-        <figure class="figure">
-          <button type="button" data-lightbox="/assets/filter-comparison.png" aria-label="Enlarge trend-filter comparison chart">
-            <img src="/assets/filter-comparison.png" alt="Equity and drawdown comparison for several Bitcoin trend filters" loading="lazy" />
-          </button>
-          <figcaption>Equity and drawdown across trend-filter specifications. Select to enlarge.</figcaption>
-        </figure>
+      <section class="article-section" id="data">
+        <span class="section-kicker">01 / DATA</span>
+        <h2 data-content-text="data_title">A compact, cross-cycle dataset</h2>
+        <div class="data-grid" data-content-list="data_rows">
+          <div><span>Inputs</span><strong>MVRV Z-Score, hash rate, Fear &amp; Greed, and price</strong></div>
+          <div><span>Signal history</span><strong>2013–2026; common composite sample begins in 2018</strong></div>
+          <div><span>Backtest</span><strong>2021 onward · daily · T+1 · 0.1% one-way cost</strong></div>
+        </div>
       </section>
 
-      <section class="article-section" id="regimes" data-content-figure="1">
-        <span class="section-kicker">02 / REGIME MODEL</span>
-        <h2>Classifying low-, intermediate-, and high-valuation markets</h2>
-        <figure class="figure">
-          <button type="button" data-lightbox="/assets/regime-framework.png" aria-label="Enlarge Bitcoin regime score chart">
-            <img src="/assets/regime-framework.png" alt="Bitcoin multi-factor score, valuation regimes, and price" loading="lazy" />
-          </button>
-          <figcaption>Multi-factor score combining valuation, miner economics, macro conditions, and sentiment.</figcaption>
-        </figure>
+      <section class="article-section" id="signals">
+        <span class="section-kicker">02 / ANALYZE SIGNALS</span>
+        <h2>Three dimensions, one representative signal each</h2>
+        <p class="section-intro" data-content-text="signal_intro">After screening overlapping indicators for correlation and redundancy, I selected one representative signal from each economic dimension.</p>
+
+        <div class="signal-block" data-content-figure="0">
+          <span class="signal-label" data-figure-kicker>On-chain valuation</span>
+          <h3 data-figure-title>MVRV Z-Score</h3>
+          <p class="signal-insight" data-figure-insight>The sample separates Bitcoin into distinct valuation zones with meaningfully different forward-return profiles.</p>
+          <figure class="figure"><button type="button" data-lightbox="/assets/mvrv-z-score-zones.png" aria-label="Enlarge MVRV Z-Score chart"><img src="/assets/mvrv-z-score-zones.png" alt="MVRV Z-Score Bitcoin price zones and simple NAV" loading="lazy" /></button><figcaption>90-day median returns by zone: +1.6%, +14.6%, and +42.8%. Select to enlarge.</figcaption></figure>
+        </div>
+
+        <div class="signal-block" data-content-figure="1">
+          <span class="signal-label" data-figure-kicker>Miner state</span>
+          <h3 data-figure-title>Hash Ribbon</h3>
+          <p class="signal-insight" data-figure-insight>Hash-rate trends capture changes in miner stress and recovery that are not visible in price alone.</p>
+          <figure class="figure"><button type="button" data-lightbox="/assets/hash-ribbon-zones.png" aria-label="Enlarge Hash Ribbon chart"><img src="/assets/hash-ribbon-zones.png" alt="Hash Ribbon Bitcoin price zones and simple NAV" loading="lazy" /></button><figcaption>90-day median returns by zone: +8.0%, +9.2%, and −1.4%. Select to enlarge.</figcaption></figure>
+        </div>
+
+        <div class="signal-block" data-content-figure="2">
+          <span class="signal-label" data-figure-kicker>Macro and sentiment</span>
+          <h3 data-figure-title>Fear &amp; Greed Index</h3>
+          <p class="signal-insight" data-figure-insight>Investor sentiment provides a separate view of risk appetite across the market cycle.</p>
+          <figure class="figure"><button type="button" data-lightbox="/assets/fear-greed-zones.png" aria-label="Enlarge Fear and Greed chart"><img src="/assets/fear-greed-zones.png" alt="Fear and Greed Index Bitcoin price zones and simple NAV" loading="lazy" /></button><figcaption>90-day median returns by zone: −6.8%, +5.2%, and +9.6%. Select to enlarge.</figcaption></figure>
+        </div>
       </section>
 
-      <section class="article-section" id="results" data-content-figure="2">
-        <span class="section-kicker">03 / RESULTS</span>
-        <h2>Comparable upside with substantially lower drawdown</h2>
-        <figure class="figure">
-          <button type="button" data-lightbox="/assets/final-comparison.png" aria-label="Enlarge combined strategy comparison chart">
-            <img src="/assets/final-comparison.png" alt="Combined Bitcoin strategy compared with buy-and-hold" loading="lazy" />
-          </button>
-          <figcaption>Strategy: 2.82× ending value and 18.6% maximum drawdown. Bitcoin buy-and-hold: 2.68× and 58.4%.</figcaption>
-        </figure>
+      <section class="article-section" id="composite">
+        <span class="section-kicker">03 / COMPOSITE SCORE</span>
+        <h2>Combine the signals into a 100-point regime score</h2>
+        <div class="table-wrap">
+          <table class="research-table">
+            <thead><tr><th>Factor</th><th>Maximum points</th><th>Scoring rule</th></tr></thead>
+            <tbody data-content-list="scoring_rows">
+              <tr><td>On-chain valuation: MVRV Z-Score</td><td>40</td><td>Z ≤ 0 → 0 · 0 &lt; Z &lt; 1 → 20 · Z ≥ 1 → 40</td></tr>
+              <tr><td>Miner state: Hash Ribbon</td><td>30</td><td>≤ 0% → 0 · 0%–10% → 15 · ≥ 10% → 30</td></tr>
+              <tr><td>Macro/sentiment: Fear &amp; Greed</td><td>30</td><td>≤ 25 → 0 · 25–75 → 15 · ≥ 75 → 30</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="signal-block composite-figure" data-content-figure="3">
+          <span class="signal-label" data-figure-kicker>Regime classification</span>
+          <h3 data-figure-title>Three-factor composite score</h3>
+          <p class="signal-insight" data-figure-insight>The combined score maps daily observations into low-, intermediate-, and high-price zones.</p>
+          <figure class="figure"><button type="button" data-lightbox="/assets/composite-score-zones.png" aria-label="Enlarge composite score chart"><img src="/assets/composite-score-zones.png" alt="Bitcoin three-factor composite score zones and simple NAV" loading="lazy" /></button><figcaption>Common sample begins February 2018; zone NAVs execute with a one-day lag. Select to enlarge.</figcaption></figure>
+        </div>
       </section>
 
-      <footer class="article-footer">
-        <p data-content-text="footer_text">Source: Week 5 four-week research summary, Bitcoin section. For research and educational purposes only. This is not investment advice.</p>
-      </footer>
+      <section class="article-section" id="strategy">
+        <span class="section-kicker">04 / FORM THE STRATEGY</span>
+        <h2>Apply a different momentum rule in each regime</h2>
+        <div class="table-wrap">
+          <table class="research-table strategy-table">
+            <thead><tr><th>Price zone</th><th>Strategy rule</th><th>Rationale</th></tr></thead>
+            <tbody data-content-list="strategy_rows">
+              <tr><td><span class="zone zone-low">Low</span></td><td>Buy when EMA20 / EMA50 − 1 crosses above −5%. Exit at ≥0%, ≤−8%, a 12% price stop, or when leaving the zone.</td><td>Wait for momentum to recover after deep weakness; exit if the recovery fails.</td></tr>
+              <tr><td><span class="zone zone-mid">Mid</span></td><td>Buy when EMA20 / EMA50 − 1 &gt; 4%. Exit below 1% or when leaving the zone.</td><td>Use a 4% / 1% hysteresis band to confirm the medium-term uptrend and reduce whipsaws.</td></tr>
+              <tr><td><span class="zone zone-high">High</span></td><td>Hold BTC only when EMA5 / EMA30 − 1 &gt; 1%; otherwise stay in cash.</td><td>Stay invested only while short-term momentum remains stronger than the intermediate trend.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="method-note" data-content-text="strategy_note">Backtest convention: T+1 execution · 0.1% one-way transaction cost · long or cash only.</p>
+      </section>
+
+      <section class="article-section" id="results">
+        <span class="section-kicker">05 / RESULTS</span>
+        <h2>Higher risk-adjusted performance with a smaller drawdown</h2>
+        <div class="signal-block result-figure" data-content-figure="4">
+          <span class="signal-label" data-figure-kicker>Backtest comparison</span>
+          <h3 data-figure-title>Regime strategy vs. Bitcoin buy-and-hold</h3>
+          <p class="signal-insight" data-figure-insight>The strategy preserved comparable upside while materially reducing the depth of losses.</p>
+          <figure class="figure"><button type="button" data-lightbox="/assets/btc_three_factor_low_mid_high_ema_2021_simple_en.png" aria-label="Enlarge strategy results chart"><img src="/assets/btc_three_factor_low_mid_high_ema_2021_simple_en.png" alt="Bitcoin regime strategy compared with buy-and-hold since 2021" loading="lazy" /></button><figcaption>Evaluation window: January 2021 to August 2026. Select to enlarge.</figcaption></figure>
+        </div>
+        <div class="table-wrap results-wrap">
+          <table class="research-table results-table">
+            <thead><tr><th>Approach</th><th>Cumulative return</th><th>Maximum drawdown</th><th>Sharpe</th><th>Calmar</th></tr></thead>
+            <tbody data-content-list="result_rows">
+              <tr><td>Combined strategy</td><td>+182%</td><td>−19%</td><td>0.97</td><td>1.75</td></tr>
+              <tr><td>BTC buy-and-hold</td><td>+168%</td><td>−58%</td><td>0.53</td><td>0.52</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="result-callout" data-content-text="result_summary">The strategy improved Sharpe from 0.53 to 0.97 and Calmar from 0.52 to 1.75, while reducing maximum drawdown from 58% to 19%.</p>
+        <p class="method-note">Returns and drawdowns are shown as percentages. Sharpe is annualized at 365 days; Calmar uses simple annualized return.</p>
+      </section>
+
+      <footer class="article-footer"><p data-content-text="footer_text">For research and educational purposes only. This is not investment advice.</p></footer>
     </article>
   </main>
 
-  <dialog id="lightbox" aria-label="Enlarged research figure">
-    <button class="dialog-close" type="button" aria-label="Close enlarged figure">×</button>
-    <img id="lightboxImage" alt="" />
-  </dialog>
+  <dialog id="lightbox" aria-label="Enlarged research figure"><button class="dialog-close" type="button" aria-label="Close enlarged figure">×</button><img id="lightboxImage" alt="" /></dialog>
   <script src="/assets/site.js"></script>
 </body>
 </html>
