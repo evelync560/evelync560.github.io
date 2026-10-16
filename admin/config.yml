@@ -189,6 +189,8 @@ collections:
               - { label: Content, name: content, widget: text }
               - { label: Source, name: source, widget: string }
           - { label: Data sample note, name: data_note, widget: text }
+          - { label: Basis chart title, name: basis_chart_title, widget: string }
+          - { label: Basis chart caption, name: basis_chart_caption, widget: text }
           - { label: Research-window finding, name: basis_in_sample, widget: string }
           - { label: Out-of-sample finding, name: basis_out_sample, widget: string }
           - { label: Basis explanation, name: basis_explanation, widget: text }

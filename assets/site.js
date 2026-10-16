@@ -323,3 +323,238 @@ if (sections.length && tocLinks.length) {
   }, { rootMargin: '-20% 0px -68% 0px' });
   sections.forEach((section) => observer.observe(section));
 }
+
+const initCxmtInteractiveChart = async () => {
+  const chart = document.querySelector('[data-cxmt-chart]');
+  if (!chart) return;
+  const canvas = chart.querySelector('canvas');
+  const stage = chart.querySelector('.interactive-chart-stage');
+  const tooltip = chart.querySelector('.chart-tooltip');
+  const buttons = [...chart.querySelectorAll('[data-chart-range]')];
+  if (!canvas || !stage || !tooltip) return;
+
+  try {
+    const response = await fetch(chart.dataset.source, { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`Chart data request failed: ${response.status}`);
+    const payload = await response.json();
+    const allRows = payload.rows.map(([time, ashare, hyperliquid, basis]) => ({
+      time,
+      date: time.slice(0, 10),
+      ashare,
+      hyperliquid,
+      basis,
+    }));
+    const cutoff = payload.meta.research_cutoff;
+    const state = { range: 'full', rows: allRows, hover: -1, plot: null };
+
+    const css = (name, fallback) => getComputedStyle(document.body).getPropertyValue(name).trim() || fallback;
+    const compactDate = (value) => {
+      const [, month, day] = value.split('-');
+      return `${month}/${day}`;
+    };
+    const visibleRows = () => {
+      if (state.range === 'research') return allRows.filter((row) => row.time <= cutoff);
+      if (state.range === 'oos') return allRows.filter((row) => row.time > cutoff);
+      return allRows;
+    };
+
+    const draw = () => {
+      state.rows = visibleRows();
+      const width = Math.max(320, stage.clientWidth);
+      const height = Math.max(360, stage.clientHeight);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      const context = canvas.getContext('2d');
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      context.clearRect(0, 0, width, height);
+
+      const colors = {
+        ink: css('--ink', '#20232a'),
+        muted: css('--muted', '#69707c'),
+        line: css('--line', '#e4e6ea'),
+        bg: css('--bg', '#ffffff'),
+        accent: css('--accent', '#315cc7'),
+        ashare: '#315cc7',
+        hyperliquid: '#e88925',
+        basis: '#16847a',
+      };
+      const plot = {
+        left: width < 520 ? 44 : 52,
+        right: width - 12,
+        priceTop: 18,
+        priceBottom: Math.round(height * .57),
+        basisTop: Math.round(height * .68),
+        basisBottom: height - 34,
+      };
+      plot.width = plot.right - plot.left;
+      state.plot = plot;
+      const rows = state.rows;
+      if (!rows.length) return;
+      const xAt = (index) => plot.left + (rows.length === 1 ? 0 : index / (rows.length - 1)) * plot.width;
+
+      const prices = rows.flatMap((row) => [row.ashare, row.hyperliquid]);
+      let priceMin = Math.min(...prices);
+      let priceMax = Math.max(...prices);
+      const pricePad = Math.max(.5, (priceMax - priceMin) * .08);
+      priceMin -= pricePad;
+      priceMax += pricePad;
+      let basisMin = Math.min(0, ...rows.map((row) => row.basis));
+      let basisMax = Math.max(0, ...rows.map((row) => row.basis));
+      const basisPad = Math.max(.3, (basisMax - basisMin) * .08);
+      basisMin -= basisPad;
+      basisMax += basisPad;
+      const yPrice = (value) => plot.priceBottom - ((value - priceMin) / (priceMax - priceMin)) * (plot.priceBottom - plot.priceTop);
+      const yBasis = (value) => plot.basisBottom - ((value - basisMin) / (basisMax - basisMin)) * (plot.basisBottom - plot.basisTop);
+
+      context.font = '10px Inter, ui-sans-serif, sans-serif';
+      context.textBaseline = 'middle';
+      context.lineWidth = 1;
+      const gridPanel = (top, bottom, min, max, formatter) => {
+        for (let step = 0; step <= 4; step += 1) {
+          const y = top + ((bottom - top) * step) / 4;
+          const value = max - ((max - min) * step) / 4;
+          context.strokeStyle = colors.line;
+          context.beginPath();
+          context.moveTo(plot.left, y);
+          context.lineTo(plot.right, y);
+          context.stroke();
+          context.fillStyle = colors.muted;
+          context.textAlign = 'right';
+          context.fillText(formatter(value), plot.left - 7, y);
+        }
+      };
+      gridPanel(plot.priceTop, plot.priceBottom, priceMin, priceMax, (value) => value.toFixed(1));
+      gridPanel(plot.basisTop, plot.basisBottom, basisMin, basisMax, (value) => `${value.toFixed(1)}%`);
+
+      context.save();
+      context.fillStyle = colors.muted;
+      context.font = '600 10px Inter, ui-sans-serif, sans-serif';
+      context.textAlign = 'left';
+      context.fillText('PRICE (CNY)', plot.left, 7);
+      context.fillText('BASIS (%)', plot.left, plot.basisTop - 12);
+      context.restore();
+
+      const drawSeries = (key, yScale, color) => {
+        context.strokeStyle = color;
+        context.lineWidth = 1.45;
+        context.lineJoin = 'round';
+        context.lineCap = 'round';
+        context.beginPath();
+        rows.forEach((row, index) => {
+          const x = xAt(index);
+          const y = yScale(row[key]);
+          if (index === 0 || row.date !== rows[index - 1].date) context.moveTo(x, y);
+          else context.lineTo(x, y);
+        });
+        context.stroke();
+      };
+      drawSeries('ashare', yPrice, colors.ashare);
+      drawSeries('hyperliquid', yPrice, colors.hyperliquid);
+      drawSeries('basis', yBasis, colors.basis);
+
+      const zeroY = yBasis(0);
+      context.save();
+      context.strokeStyle = colors.muted;
+      context.setLineDash([4, 4]);
+      context.beginPath();
+      context.moveTo(plot.left, zeroY);
+      context.lineTo(plot.right, zeroY);
+      context.stroke();
+      context.restore();
+
+      const cutoffIndex = rows.findIndex((row) => row.time >= cutoff);
+      if (cutoffIndex >= 0 && cutoffIndex < rows.length && state.range !== 'oos') {
+        const cutoffX = xAt(cutoffIndex);
+        context.save();
+        context.strokeStyle = colors.accent;
+        context.setLineDash([5, 4]);
+        context.beginPath();
+        context.moveTo(cutoffX, plot.priceTop);
+        context.lineTo(cutoffX, plot.basisBottom);
+        context.stroke();
+        context.fillStyle = colors.accent;
+        context.font = '600 9px Inter, ui-sans-serif, sans-serif';
+        context.textAlign = cutoffX > width * .78 ? 'right' : 'left';
+        context.fillText('RESEARCH CUTOFF', cutoffX + (cutoffX > width * .78 ? -5 : 5), plot.priceTop + 8);
+        context.restore();
+      }
+
+      const tickCount = width < 520 ? 4 : 6;
+      context.fillStyle = colors.muted;
+      context.font = '10px Inter, ui-sans-serif, sans-serif';
+      context.textAlign = 'center';
+      for (let tick = 0; tick < tickCount; tick += 1) {
+        const index = Math.round((rows.length - 1) * tick / (tickCount - 1));
+        context.fillText(compactDate(rows[index].date), xAt(index), height - 14);
+      }
+
+      if (state.hover >= 0 && state.hover < rows.length) {
+        const x = xAt(state.hover);
+        context.save();
+        context.strokeStyle = colors.muted;
+        context.setLineDash([3, 3]);
+        context.beginPath();
+        context.moveTo(x, plot.priceTop);
+        context.lineTo(x, plot.basisBottom);
+        context.stroke();
+        [['ashare', yPrice, colors.ashare], ['hyperliquid', yPrice, colors.hyperliquid], ['basis', yBasis, colors.basis]].forEach(([key, scale, color]) => {
+          context.fillStyle = color;
+          context.beginPath();
+          context.arc(x, scale(rows[state.hover][key]), 3, 0, Math.PI * 2);
+          context.fill();
+        });
+        context.restore();
+      }
+    };
+
+    const showTooltip = (event) => {
+      const plot = state.plot;
+      if (!plot || !state.rows.length) return;
+      const bounds = canvas.getBoundingClientRect();
+      const x = event.clientX - bounds.left;
+      const y = event.clientY - bounds.top;
+      if (x < plot.left || x > plot.right || y < plot.priceTop || y > plot.basisBottom) {
+        state.hover = -1;
+        tooltip.hidden = true;
+        draw();
+        return;
+      }
+      state.hover = Math.max(0, Math.min(state.rows.length - 1, Math.round(((x - plot.left) / plot.width) * (state.rows.length - 1))));
+      const row = state.rows[state.hover];
+      tooltip.innerHTML = `<strong>${row.time} Beijing</strong><span>A-share <b>¥${row.ashare.toFixed(2)}</b></span><span>Hyperliquid <b>¥${row.hyperliquid.toFixed(2)}</b></span><span>Basis <b>${row.basis >= 0 ? '+' : ''}${row.basis.toFixed(2)}%</b></span>`;
+      tooltip.hidden = false;
+      const left = Math.min(stage.clientWidth - 176, Math.max(4, x + 13));
+      const top = Math.min(stage.clientHeight - 100, Math.max(4, y - 42));
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+      draw();
+    };
+    canvas.addEventListener('pointermove', showTooltip);
+    canvas.addEventListener('pointerleave', () => {
+      state.hover = -1;
+      tooltip.hidden = true;
+      draw();
+    });
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        state.range = button.dataset.chartRange;
+        state.hover = -1;
+        tooltip.hidden = true;
+        buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+        draw();
+      });
+    });
+    new ResizeObserver(draw).observe(stage);
+    new MutationObserver(draw).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+    draw();
+  } catch (error) {
+    console.warn('The CXMT interactive chart could not be loaded.', error);
+    stage.replaceChildren(Object.assign(document.createElement('p'), {
+      className: 'muted',
+      textContent: 'Interactive data temporarily unavailable.',
+    }));
+  }
+};
+
+initCxmtInteractiveChart();

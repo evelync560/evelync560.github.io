@@ -339,8 +339,64 @@ h1 {
 .cxmt-data-table th:nth-child(2) { width: 15%; }
 .cxmt-data-table th:nth-child(3) { width: 47%; }
 .cxmt-data-table th:nth-child(4) { width: 20%; }
-.cxmt-schematic { margin-top: 20px; }
-.cxmt-schematic img { padding: 8px; }
+.interactive-chart-card {
+  margin-top: 20px;
+  padding: 18px 18px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  box-shadow: var(--shadow);
+}
+.interactive-chart-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+.interactive-chart-header h3 { margin: 0; font-size: .96rem; }
+.interactive-chart-header p { margin: 3px 0 0; color: var(--muted); font-size: .67rem; }
+.chart-range-controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 5px; }
+.chart-range-controls button {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--surface);
+  font-size: .62rem;
+  font-weight: 680;
+  cursor: pointer;
+}
+.chart-range-controls button:hover,
+.chart-range-controls button:focus-visible { color: var(--ink); border-color: var(--accent); }
+.chart-range-controls button[aria-pressed="true"] { color: #fff; border-color: var(--accent); background: var(--accent); }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 14px; margin: 13px 0 2px; color: var(--muted); font-size: .63rem; }
+.chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.chart-legend i { width: 13px; height: 2px; border-radius: 999px; }
+.legend-ashare { background: #315cc7; }
+.legend-hyperliquid { background: #e88925; }
+.legend-basis { background: #16847a; }
+.interactive-chart-stage { position: relative; width: 100%; height: 430px; margin-top: 4px; }
+.interactive-chart-stage canvas { display: block; width: 100%; height: 100%; cursor: crosshair; touch-action: pan-y; }
+.chart-tooltip {
+  position: absolute;
+  z-index: 2;
+  min-width: 166px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  box-shadow: var(--shadow);
+  font-size: .66rem;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+}
+.chart-tooltip strong { display: block; margin-bottom: 3px; font-size: .67rem; }
+.chart-tooltip span { display: flex; justify-content: space-between; gap: 14px; color: var(--muted); }
+.chart-tooltip b { color: var(--ink); font-weight: 680; }
+.interactive-chart-caption { margin: 7px 0 0 !important; padding-top: 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: .67rem; line-height: 1.5; }
 .basis-periods {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -479,6 +535,10 @@ dialog img { width: 100%; height: auto; }
   .research-table { min-width: 660px; }
   .basis-periods,
   .sample-pair { grid-template-columns: 1fr; }
+  .interactive-chart-card { padding: 15px 12px 10px; }
+  .interactive-chart-header { display: block; }
+  .chart-range-controls { justify-content: flex-start; margin-top: 10px; }
+  .interactive-chart-stage { height: 390px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

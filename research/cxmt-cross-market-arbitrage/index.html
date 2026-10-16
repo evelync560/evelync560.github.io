@@ -7,7 +7,7 @@
   <meta name="color-scheme" content="light dark" />
   <title>CXMT Cross-Market Arbitrage · Evelyn Chen</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23315cc7'/%3E%3Cpath d='M18 21h28v7H18zm0 15h28v7H18z' fill='white'/%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="/assets/academic.css" />
+  <link rel="stylesheet" href="/assets/academic.css?v=20261015-cxmt-chart" />
 </head>
 <body class="project-cxmt" data-content-source="/content/cxmt.json">
   <header class="site-header">
@@ -75,10 +75,29 @@
       <section class="article-section" id="basis">
         <span class="section-kicker">02 / PRICE BASIS</span>
         <h2>From a persistent discount to a narrower out-of-sample basis</h2>
-        <figure class="figure cxmt-schematic">
-          <img src="/assets/cxmt-basis-overview.svg" alt="Schematic of the CXMT A-share, Hyperliquid perpetual, and basis around the research cutoff" />
-          <figcaption>Schematic of the aligned panel. Research finished on August 17; later observations are out of sample.</figcaption>
-        </figure>
+        <div class="interactive-chart-card" data-cxmt-chart data-source="/assets/cxmt-price-basis-data.json">
+          <div class="interactive-chart-header">
+            <div>
+              <h3 data-content-text="basis_chart_title">Actual five-minute prices and basis</h3>
+              <p>1,488 aligned bars · Beijing time · CNY</p>
+            </div>
+            <div class="chart-range-controls" aria-label="Chart range">
+              <button type="button" data-chart-range="full" aria-pressed="true">Full sample</button>
+              <button type="button" data-chart-range="research" aria-pressed="false">Research window</button>
+              <button type="button" data-chart-range="oos" aria-pressed="false">Out of sample</button>
+            </div>
+          </div>
+          <div class="chart-legend" aria-hidden="true">
+            <span><i class="legend-ashare"></i>A-share close</span>
+            <span><i class="legend-hyperliquid"></i>Hyperliquid close</span>
+            <span><i class="legend-basis"></i>Basis</span>
+          </div>
+          <div class="interactive-chart-stage">
+            <canvas role="img" aria-label="Interactive chart of CXMT A-share and Hyperliquid prices in CNY with the percentage basis"></canvas>
+            <div class="chart-tooltip" hidden></div>
+          </div>
+          <p class="interactive-chart-caption" data-content-text="basis_chart_caption">Actual aligned closes from the workbook. Hover for bar-level values or use the range buttons to isolate the research window and out-of-sample period. Equal-width trading bars remove overnight gaps; lines break between trading days.</p>
+        </div>
         <div class="basis-periods">
           <div><span>Research window</span><strong data-content-text="basis_in_sample">Average perpetual discount: 4.08%</strong><small>Through August 17</small></div>
           <div><span>Out of sample</span><strong data-content-text="basis_out_sample">The basis continued to narrow</strong><small>After August 17</small></div>
@@ -162,6 +181,6 @@
       <footer class="article-footer"><p data-content-text="footer_text">For research and educational purposes only. Backtests are not evidence of future performance.</p></footer>
     </article>
   </main>
-  <script src="/assets/site.js"></script>
+  <script src="/assets/site.js?v=20261015-cxmt-chart"></script>
 </body>
 </html>

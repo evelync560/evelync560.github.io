@@ -23,6 +23,8 @@
     { "block": "Derived series", "frequency": "5 min", "content": "CNY-adjusted perpetual price, basis, funding carry, and costs", "source": "Calculated" }
   ],
   "data_note": "The initial research window ran from July 27 to August 17, 2026. Observations after August 17 are treated as out of sample.",
+  "basis_chart_title": "Actual five-minute prices and basis",
+  "basis_chart_caption": "Actual aligned closes from the workbook. Hover for bar-level values or use the range buttons to isolate the research window and out-of-sample period. Equal-width trading bars remove overnight gaps; lines break between trading days. Source: Hyperliquid, JoinQuant, and Yahoo Finance USD/CNH.",
   "basis_in_sample": "Average perpetual discount: 4.08%",
   "basis_out_sample": "The basis continued to narrow",
   "basis_explanation": "The perpetual and the A-share trade under different hours, settlement rules, and access constraints. The HIP-3 oracle links the two venues, but T+1 execution, limited shorting, funding, and fragmented liquidity prevent immediate convergence.",
