@@ -85,8 +85,8 @@
       "summary": "A five-minute study of the CXMT A-share, Hyperliquid perpetual, funding mechanics, and implementable basis convergence.",
       "metrics": [
         { "value": "4.08%", "label": "average discount" },
-        { "value": "6", "label": "OOS trades" },
-        { "value": "+0.73%", "label": "OOS net" }
+        { "value": "20", "label": "OOS trades" },
+        { "value": "+2.432%", "label": "OOS net" }
       ],
       "link": "/research/cxmt-cross-market-arbitrage/"
     }
