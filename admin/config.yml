@@ -208,6 +208,15 @@ collections:
               - { label: Time, name: time, widget: string }
               - { label: Funding rate, name: rate, widget: string }
               - { label: Bar width, name: width, widget: string, hint: "Use a percentage, for example 42.6%" }
+          - { label: Strategy section heading, name: strategy_title, widget: string }
+          - label: Strategy steps
+            name: strategy_steps
+            widget: list
+            min: 4
+            max: 4
+            fields:
+              - { label: Step label, name: label, widget: string }
+              - { label: Explanation, name: detail, widget: text }
           - { label: Intraday feasibility note, name: intraday_note, widget: text }
           - { label: Interday rule, name: interday_rule, widget: text }
           - label: Interday results

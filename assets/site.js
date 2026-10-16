@@ -212,6 +212,19 @@ const renderManagedLists = (content) => {
     }));
   }
 
+  const strategySteps = document.querySelector('[data-content-list="strategy_steps"]');
+  if (strategySteps && Array.isArray(content.strategy_steps)) {
+    replaceChildren(strategySteps, content.strategy_steps.map((item) => {
+      const step = document.createElement('div');
+      const label = document.createElement('strong');
+      const detail = document.createElement('p');
+      label.textContent = item.label;
+      detail.textContent = item.detail;
+      step.append(label, detail);
+      return step;
+    }));
+  }
+
   const interdayRows = document.querySelector('[data-content-list="interday_rows"]');
   if (interdayRows && Array.isArray(content.interday_rows)) {
     replaceChildren(interdayRows, content.interday_rows.map((item) => {

@@ -7,7 +7,7 @@
   <meta name="color-scheme" content="light dark" />
   <title>CXMT Cross-Market Arbitrage · Evelyn Chen</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23315cc7'/%3E%3Cpath d='M18 21h28v7H18zm0 15h28v7H18z' fill='white'/%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="/assets/academic.css?v=20261015-cxmt-chart" />
+  <link rel="stylesheet" href="/assets/academic.css?v=20261015-cxmt-strategy" />
 </head>
 <body class="project-cxmt" data-content-source="/content/cxmt.json">
   <header class="site-header">
@@ -138,7 +138,13 @@
 
       <section class="article-section" id="strategy">
         <span class="section-kicker">04 / STRATEGY</span>
-        <h2>Intraday results identify the signal; interday trading tests feasibility</h2>
+        <h2 data-content-text="strategy_title">Trade an unusually rich perpetual, then wait for the basis to normalize</h2>
+        <div class="strategy-logic" data-content-list="strategy_steps" aria-label="Strategy rules">
+          <div><strong>1 · Signal</strong><p>Z-score the log basis against the previous 72 five-minute bars—about six hours of observed trading. Shift the rolling mean and volatility by one bar.</p></div>
+          <div><strong>2 · Enter</strong><p>At 1.2 ≤ Z &lt; 3 and funding ≥ −0.05% per hour, buy the A-share and short equal-notional CXMT at the next bar's open.</p></div>
+          <div><strong>3 · Hold</strong><p>Under T+1, do not exit on the entry day. Carry both legs across sessions while waiting for the spread to mean-revert.</p></div>
+          <div><strong>4 · Exit</strong><p>Exit when Z ≤ 0; stop when Z ≥ 3. Net return includes realized funding and 20 bps per completed pair trade.</p></div>
+        </div>
         <div class="strategy-comparison">
           <section>
             <div class="comparison-heading"><span>Intraday</span><strong>Diagnostic only</strong></div>
@@ -150,7 +156,7 @@
           </section>
           <section>
             <div class="comparison-heading"><span>Interday</span><strong>Execution focus</strong></div>
-            <p class="rule-line" data-content-text="interday_rule">Enter at 1.2 ≤ Z &lt; 3; exit at Z ≤ 0; stop at Z ≥ 3; respect A-share T+1.</p>
+            <p class="rule-line" data-content-text="interday_rule">Apply the causal 72-bar signal to an equal-notional long A-share / short CXMT pair; execute on the next bar and allow overnight holding under T+1.</p>
             <div class="table-wrap compact-table-wrap">
               <table class="research-table compact-results">
                 <thead><tr><th>Sample</th><th>Trades</th><th>Win rate</th><th>Basis</th><th>Funding</th><th>Cost</th><th>Net</th></tr></thead>
@@ -181,6 +187,6 @@
       <footer class="article-footer"><p data-content-text="footer_text">For research and educational purposes only. Backtests are not evidence of future performance.</p></footer>
     </article>
   </main>
-  <script src="/assets/site.js?v=20261015-cxmt-chart"></script>
+  <script src="/assets/site.js?v=20261015-cxmt-strategy"></script>
 </body>
 </html>

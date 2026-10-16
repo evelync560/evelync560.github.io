@@ -41,8 +41,15 @@
     { "time": "19:00", "rate": "−0.0057", "width": "2.4%" },
     { "time": "20:00", "rate": "+0.0034", "width": "0%" }
   ],
+  "strategy_title": "Trade an unusually rich perpetual, then wait for the basis to normalize",
+  "strategy_steps": [
+    { "label": "1 · Signal", "detail": "Z-score the log basis against the previous 72 five-minute bars—about six hours of observed trading. Shift the rolling mean and volatility by one bar." },
+    { "label": "2 · Enter", "detail": "At 1.2 ≤ Z < 3 and funding ≥ −0.05% per hour, buy the A-share and short equal-notional CXMT at the next bar's open." },
+    { "label": "3 · Hold", "detail": "Under T+1, do not exit on the entry day. Carry both legs across sessions while waiting for the spread to mean-revert." },
+    { "label": "4 · Exit", "detail": "Exit when Z ≤ 0; stop when Z ≥ 3. Net return includes realized funding and 20 bps per completed pair trade." }
+  ],
   "intraday_note": "The signal was highly profitable in the study, but mainland equity T+1 and short-sale limits make the assumed intraday execution impractical.",
-  "interday_rule": "Enter at 1.2 ≤ Z < 3; exit at Z ≤ 0; stop at Z ≥ 3; respect A-share T+1.",
+  "interday_rule": "Apply the causal 72-bar signal to an equal-notional long A-share / short CXMT pair; execute on the next bar and allow overnight holding under T+1.",
   "interday_rows": [
     { "sample": "In sample", "trades": "10", "win_rate": "60.0%", "basis": "+7.34%", "funding": "−6.07%", "cost": "−2.00%", "net": "−0.73%" },
     { "sample": "Out of sample", "trades": "20", "win_rate": "66.7%", "basis": "+9.363%", "funding": "−2.931%", "cost": "−4.00%", "net": "+0.73%" }
