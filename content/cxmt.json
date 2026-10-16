@@ -30,7 +30,7 @@
   "basis_explanation": "The perpetual and the A-share trade under different hours, settlement rules, and access constraints. The HIP-3 oracle links the two venues, but T+1 execution, limited shorting, funding, and fragmented liquidity prevent immediate convergence.",
   "funding_explanation": "xyz:CXMT is a HIP-3 builder-deployed perpetual operated by trade.xyz. Its oracle carries the external reference price on-chain and updates roughly every three seconds.",
   "funding_note": "After the A-share closes, the external anchor disappears. An EWMA pulls the oracle toward the executable market range; once IPD reaches zero, premium and funding also approach zero.",
-  "funding_chart_image": "/assets/cxmt-basis-funding-2026-08-08-13.png",
+  "funding_chart_image": "/assets/cxmt-spread-funding-2026-08-08-13-en.png",
   "funding_chart_alt": "CXMT basis and funding rate from August 8 to August 13, 2026, with A-share trading windows highlighted",
   "funding_chart_caption": "CXMT basis (top) and 24/7 funding rate (bottom), August 8–13, 2026. Yellow bands mark A-share trading hours; gray shading marks the weekend.",
   "funding_decay_rows": [
