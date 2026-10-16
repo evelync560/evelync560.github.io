@@ -194,6 +194,9 @@ collections:
           - { label: Basis explanation, name: basis_explanation, widget: text }
           - { label: Funding mechanism, name: funding_explanation, widget: text }
           - { label: Funding interpretation, name: funding_note, widget: text }
+          - { label: Funding chart, name: funding_chart_image, widget: image }
+          - { label: Funding chart description, name: funding_chart_alt, widget: string }
+          - { label: Funding chart caption, name: funding_chart_caption, widget: text }
           - label: Funding decay observations
             name: funding_decay_rows
             widget: list
