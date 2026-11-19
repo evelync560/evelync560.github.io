@@ -52,7 +52,7 @@
   "interday_rule": "Apply the causal 72-bar signal to an equal-notional long A-share / short CXMT pair; execute on the next bar and allow overnight holding under T+1.",
   "interday_rows": [
     { "sample": "In sample", "trades": "10", "win_rate": "60.0%", "basis": "+7.34%", "funding": "−6.07%", "cost": "−2.00%", "net": "−0.73%" },
-    { "sample": "Out of sample", "trades": "20", "win_rate": "66.7%", "basis": "+9.363%", "funding": "−2.931%", "cost": "−4.00%", "net": "+0.73%" }
+    { "sample": "Out of sample", "trades": "20", "win_rate": "65.0%", "basis": "+8.65%", "funding": "−3.92%", "cost": "−4.00%", "net": "+0.73%" }
   ],
   "continuation_rows": [
     { "approach": "2σ paired-arbitrage strategy", "result": "7 trades · +49.26% fixed-capital net · +11.22% annualized", "meaning": "Relative-value trading captured repeated convergence over a 4.42-year backtest; one trade remained open at −2.65%." },
